@@ -1,26 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html,body{max-width:100%;overflow-x:hidden}
+
+/* Buttons styled as page CTAs reset browser defaults so they match their <a> siblings */
+button.nav-pill,
+button.btn-primary,
+button.btn-ghost,
+button.btn-outline{
+  border:none;
+  cursor:pointer;
+  font:inherit;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Shared design tokens — used by NAV, footer and page styles */
+:root{
+  --navy:#1E3564;--navy-mid:#243A6A;--navy-deep:#111E3C;
+  --magenta:#C0388A;--magenta-s:#D058A0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── SITE NAV (shared across all pages) ── */
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 clamp(1.5rem,4vw,3rem)}
+.site-nav .nav-bg{position:absolute;inset:0;background:rgba(17,30,60,0.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07)}
+.site-nav .nav-inner{position:relative;max-width:1200px;margin:0 auto;height:62px;display:flex;align-items:center;justify-content:space-between}
+.site-nav .nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.site-nav .nav-links{display:flex;align-items:center;gap:1.75rem}
+.site-nav .nav-links a{color:rgba(255,255,255,.55);font-size:.82rem;font-weight:400;text-decoration:none;letter-spacing:.01em;transition:color .2s;font-family:'DM Sans',sans-serif}
+.site-nav .nav-links a:hover{color:#fff}
+.site-nav .nav-pill{background:var(--magenta);color:#fff!important;padding:.45rem 1.2rem;border-radius:100px;font-weight:500!important;font-size:.82rem!important;transition:background .2s,transform .15s!important}
+.site-nav .nav-pill:hover{background:#A8307A!important;transform:translateY(-1px)!important}
+
+/* ── SITE FOOTER (shared across all pages) ── */
+.site-footer{background:var(--navy-mid);border-top:1px solid rgba(255,255,255,.06);padding:2rem clamp(1.25rem,4vw,3rem)}
+.site-footer .footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem}
+.site-footer .footer-links{display:flex;flex-wrap:wrap;gap:1.25rem 1.95rem}
+.site-footer .footer-links a{font-size:.95rem;color:rgba(255,255,255,.3);text-decoration:none;font-family:'DM Sans',sans-serif}
+.site-footer .footer-links a:hover{color:rgba(255,255,255,.65)}
+.site-footer .footer-copy{font-size:.95rem;color:rgba(244,236,236,.873);font-family:'DM Sans',sans-serif}
+
+@media(max-width:600px){
+  .site-footer .footer-inner{flex-direction:column;align-items:center;text-align:center;gap:1.5rem}
+  .site-footer .footer-links{justify-content:center;gap:.75rem 1.25rem}
+  .site-footer .footer-links a{font-size:.85rem}
+  .site-footer .footer-copy{font-size:.8rem;text-align:center}
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── HAMBURGER BUTTON ── */
+.nav-hamburger{
+  display:none;
+  flex-direction:column;justify-content:center;align-items:center;
+  gap:5px;width:40px;height:40px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;cursor:pointer;flex-shrink:0;
+  padding:0;position:relative;z-index:201;
+}
+.nav-hamburger span{
+  display:block;width:18px;height:1.5px;
+  background:rgba(255,255,255,.85);border-radius:2px;
+  transition:transform .25s ease, opacity .25s ease;
+  transform-origin:center;
+}
+.nav-hamburger.is-open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger.is-open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.is-open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ── MOBILE DRAWER ── */
+.nav-drawer{
+  display:none;
+  position:fixed;top:62px;left:0;right:0;z-index:199;
+  background:rgba(14,25,52,0.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  padding:1.5rem clamp(1.25rem,4vw,2rem) 2rem;
+  transform:translateY(-8px);opacity:0;
+  transition:opacity .25s ease, transform .25s ease;
+  pointer-events:none;
+}
+.nav-drawer.is-open{opacity:1;transform:translateY(0);pointer-events:all}
+.nav-drawer-links{display:flex;flex-direction:column;gap:.25rem}
+.nav-drawer-links a{
+  color:rgba(255,255,255,.65);font-size:1rem;font-weight:400;
+  text-decoration:none;font-family:'DM Sans',sans-serif;
+  padding:.85rem 1rem;border-radius:8px;
+  border:1px solid transparent;
+  transition:color .18s, background .18s, border-color .18s;
+}
+.nav-drawer-links a:hover{color:#fff;background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)}
+.nav-drawer-pill{
+  margin-top:.75rem;
+  background:var(--magenta)!important;color:#fff!important;
+  padding:.75rem 1.5rem;border-radius:100px;
+  font-weight:600!important;font-size:.95rem!important;
+  border:none;cursor:pointer;font-family:'DM Sans',sans-serif;
+  text-align:center;width:100%;
+  transition:background .2s!important;
+}
+.nav-drawer-pill:hover{background:#A8307A!important}
+
+/* ── BACKDROP ── */
+.nav-backdrop{
+  position:fixed;inset:0;z-index:198;
+  background:rgba(0,0,0,.35);
+}
+
+@media(max-width:600px){
+  .site-nav .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .nav-drawer{display:block}
 }

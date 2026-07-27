@@ -413,7 +413,7 @@ export default function IssuersPage() {
           >
             <div className="section-tag">La solución</div>
             <h2 className="section-title">
-              Tu sistema emite.<br>Veris lo hace <em>verificable.</em>
+              Tu sistema emite. Veris lo hace verificable.
             </h2>
             <p className="section-sub" style={{ margin: "0 auto" }}>
               Veris no reemplaza tus procesos. Se conecta a tu arquitectura actual mediante APIs / Webhooks y 

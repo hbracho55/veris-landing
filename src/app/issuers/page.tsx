@@ -239,14 +239,14 @@ export default function IssuersPage() {
         </div>
         <div className="hero-inner">
           <div className="hero-left">
-            <div className="hero-tag">Para plataformas de RR.HH.</div>
+            <div className="hero-tag">Para Organizaciones Emisoras</div>
             <h1>
               Transforma los documentos que emites en credenciales que{" "}
               <em>nadie puede falsificar</em>
             </h1>
             <p className="hero-sub">
-              Tu plataforma ya genera los datos laborales más valiosos del mercado. Veris te da la
-              infraestructura para convertirlos en credenciales verificables, crear un nuevo canal
+              Tu organización ya genera los datos más valiosos de tus usuarios — laborales, clínicos, académicos o de identidad. Veris te da la
+              infraestructura para convertirlos en <strong>credenciales digitales verificables</strong> que cualquier institución valida en segundos, crear un nuevo canal
               de ingresos y cumplir con la normativa vigente — sin tocar tu arquitectura core.
             </p>
             <div className="hero-actions">
@@ -330,11 +330,11 @@ export default function IssuersPage() {
             <div className="problem-content fade-in">
               <div className="section-tag">El problema</div>
               <h2 className="section-title">
-                Los documentos ya no son suficientes para un mundo digital
+                Los documentos ya no son suficientes para un mundo digital. Cualquiera los puede <em>falsificar</em>.
               </h2>
               <p className="section-sub">
-                Tu plataforma emite cientos de miles de documentos al año. El problema es que un
-                PDF no es un dato — es una imagen de un dato. Y las imágenes se falsifican.
+                Tu organización invierte tiempo y recursos en generar documentos que son la base de decisiones críticas para tus usuarios. 
+                El problema es que un PDF, una hoja firmada o un certificado en papel se pueden editar con herramientas gratuitas en menos de 5 minutos.
               </p>
               <p className="section-sub" style={{ marginTop: "1rem" }}>
                 Cada solicitud de crédito, arriendo o seguro desencadena un proceso manual que
@@ -360,17 +360,17 @@ export default function IssuersPage() {
                   <div className="problem-item">
                     <div className="problem-item-icon p-red">⚠️</div>
                     <div>
-                      <div className="problem-item-title">Fraude documental creciente</div>
+                      <div className="problem-item-title">El fraude daña tu reputación</div>
                       <div className="problem-item-desc">
-                        Los PDFs editables son la herramienta más usada para falsificar
-                        liquidaciones y certificados. Tu marca es la víctima.
+                        Cuando alguien falsifica un documento tuyo, tu marca es la víctima. 
+                        Las instituciones verificadoras dejan de confiar en lo que emites..
                       </div>
                     </div>
                   </div>
                   <div className="problem-item">
                     <div className="problem-item-icon p-amber">📞</div>
                     <div>
-                      <div className="problem-item-title">Soporte operativo repetitivo</div>
+                      <div className="problem-item-title">Las verificaciones saturan tu operación</div>
                       <div className="problem-item-desc">
                         Llamadas de verificación, reenvíos de documentos, validaciones manuales.
                         Costos que escalan con tu base de usuarios.
@@ -380,20 +380,20 @@ export default function IssuersPage() {
                   <div className="problem-item">
                     <div className="problem-item-icon p-blue">⚖️</div>
                     <div>
-                      <div className="problem-item-title">Riesgo regulatorio inminente</div>
+                      <div className="problem-item-title">La normativa ya cambió</div>
                       <div className="problem-item-desc">
-                        La Ley de Protección de Datos exige portabilidad, consentimiento y
-                        minimización. El modelo documental actual no cumple.
+                        Ley de Protección de Datos, Ley Fintech, regulaciones sanitarias. 
+                        El modelo de papel y PDF no cumple con los requisitos de portabilidad y consentimiento.
                       </div>
                     </div>
                   </div>
                   <div className="problem-item">
-                    <div className="problem-item-icon p-purple">📉</div>
+                    <div className="problem-item-icon p-purple">💸</div>
                     <div>
-                      <div className="problem-item-title">Experiencia de usuario degradada</div>
+                      <div className="problem-item-title">Emites valor que otros monetizan sin pagarte</div>
                       <div className="problem-item-desc">
-                        Tus usuarios compiten en un mercado donde la velocidad importa. Esperar
-                        días para validar una liquidación es inaceptable.
+                        Bancos, aseguradoras y empleadores consultan tus documentos miles de veces al año para tomar decisiones. 
+                        Hoy lo hacen sin compensarte. Con Veris, cada validación genera un ingreso directo para tu organización.
                       </div>
                     </div>
                   </div>
@@ -413,44 +413,43 @@ export default function IssuersPage() {
           >
             <div className="section-tag">La solución</div>
             <h2 className="section-title">
-              De documento estático a credencial verificable en tiempo real
+              Tu sistema emite.<br>Veris lo hace <em>verificable.</em>
             </h2>
             <p className="section-sub" style={{ margin: "0 auto" }}>
-              Veris no reemplaza tus sistemas. Se integra a tu flujo actual mediante APIs /
-              Webhooks y transforma lo que ya emites en credenciales con evidencia criptográfica.
+              Veris no reemplaza tus procesos. Se conecta a tu arquitectura actual mediante APIs / Webhooks y 
+              transforma cada documento emitido en una credencial criptográficamente segura.
             </p>
           </div>
           <div className="how-grid">
             <div className="how-step fade-in" style={{ transitionDelay: ".1s" }}>
               <div className="how-num hn1">1</div>
-              <h3>Tu plataforma emite</h3>
+              <h3>Tu sistema emite como siempre</h3>
               <p>
-                Líquidación, certificado o constancia laboral como siempre. Ningún cambio en tu
-                flujo operativo.
+                Liquidación, receta, título o constancia. El Veris Adapter recibe el dato sin modificar tu flujo operativo ni tu arquitectura core.
               </p>
             </div>
             <div className="how-step fade-in" style={{ transitionDelay: ".2s" }}>
               <div className="how-num hn2">2</div>
-              <h3>Veris firma y entrega</h3>
+              <h3>Veris firma criptográficamente y entrega</h3>
               <p>
-                El Veris Adapter recibe el dato, lo firma criptográficamente y lo envía a la
-                billetera digital del trabajador.
+                El documento se convierte en una credencial con firma W3C Verifiable Credentials y lo envía a la
+                billetera digital del usuario.
               </p>
             </div>
             <div className="how-step fade-in" style={{ transitionDelay: ".3s" }}>
               <div className="how-num hn3">3</div>
               <h3>El usuario comparte</h3>
               <p>
-                El trabajador comparte su credencial cuando lo necesita, con control total sobre
-                cuales datos quiere compartir y a quién se los muestra.
+                La persona tiene su credencial en su billetera digital. Posee control total sobre
+                cuales datos quiere compartir y a quién se los muestra. Consentimiento explícito en cada uso.
               </p>
             </div>
             <div className="how-step fade-in" style={{ transitionDelay: ".4s" }}>
               <div className="how-num hn4">4</div>
               <h3>Validación instantánea</h3>
               <p>
-                El verificador (banco, aseguradora) confirma la autenticidad en segundos contra
-                la fuente original.
+                El verificador (banco, aseguradora, farmacia, empleador) confirma la autenticidad en segundos contra
+                la fuente original. Tú recibes la regalía.
               </p>
             </div>
           </div>
@@ -464,7 +463,7 @@ export default function IssuersPage() {
             <div>
               <div className="section-tag">Beneficios para emisores</div>
               <h2 className="section-title">
-                No solo mejoras tu producto. También abres un nuevo negocio.
+                No solo proteges tu marca.<br><em>También abres un nuevo negocio.</em>
               </h2>
             </div>
             <p className="section-sub">
@@ -476,11 +475,10 @@ export default function IssuersPage() {
           <div className="benefit-cards">
             <div className="benefit-card bc-blue fade-in" style={{ transitionDelay: ".1s" }}>
               <div className="benefit-icon bi-blue">💸</div>
-              <h3>Revenue Share del 25%</h3>
+              <h3>Gratis para ti. El verificador paga.</h3>
               <p>
-                Cada vez que un banco, aseguradora o empresa valida satisfactoriamente una
-                credencial emitida por tu plataforma, recibes el 25% del pago de la validación
-                automáticamente.
+                Emitir credenciales no tiene ningún costo para tu organización. 
+                Es el banco, la aseguradora o la farmacia quien paga por acceder a datos verificados — y tú recibes el 25% de cada transacción.
               </p>
               <div className="benefit-highlight">Nuevo flujo de ingresos sin desarrollo adicional</div>
             </div>
@@ -498,9 +496,9 @@ export default function IssuersPage() {
               <h3>Cero carga operativa adicional</h3>
               <p>
                 Sin almacenamiento de datos personales. Sin responsabilidad sobre brechas. Sin
-                llamadas de verificación. Tu equipo de soporte deja de ser parte del flujo.
+                llamadas de verificación. Tu equipo de soporte deja de ser parte del flujo de validación.
               </p>
-              <div className="benefit-highlight g">Zero Data Liability desde el diseño</div>
+              <div className="benefit-highlight g">Cero fuga de datos desde el diseño</div>
             </div>
             <div className="benefit-card bc-blue fade-in" style={{ transitionDelay: ".4s" }}>
               <div className="benefit-icon bi-blue">📊</div>
@@ -516,7 +514,7 @@ export default function IssuersPage() {
               <h3>Cumplimiento normativo automático</h3>
               <p>
                 Portabilidad, consentimiento explícito y minimización de datos incorporados en el
-                flujo. Cumples con la Ley de Protección de Datos sin rediseñar tu arquitectura.
+                flujo. Cumples con la Ley de Protección de Datos y normativas sectoriales sin rediseñar tu arquitectura.
               </p>
               <div className="benefit-highlight m">
                 Compatible con Regulaciones Chilenas e Internacionales
@@ -527,7 +525,7 @@ export default function IssuersPage() {
               <h3>Diferenciación competitiva real</h3>
               <p>
                 Ser el emisor de credenciales verificables en tu mercado no es una funcionalidad
-                más — es posicionarte como infraestructura de vanguardia para tus clientes.
+                más — es posicionarte como la fuente de verdad de tu sector, antes que lo haga otro.
               </p>
               <div className="benefit-highlight g">Ventaja de primer movimiento en LATAM</div>
             </div>

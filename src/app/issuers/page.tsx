@@ -413,7 +413,7 @@ export default function IssuersPage() {
           >
             <div className="section-tag">La solución</div>
             <h2 className="section-title">
-              Tu sistema emite. Veris lo hace verificable.
+              Tu sistema emite. Veris lo hace <em>verificable.</em>
             </h2>
             <p className="section-sub" style={{ margin: "0 auto" }}>
               Veris no reemplaza tus procesos. Se conecta a tu arquitectura actual mediante APIs / Webhooks y 
@@ -463,7 +463,7 @@ export default function IssuersPage() {
             <div>
               <div className="section-tag">Beneficios para emisores</div>
               <h2 className="section-title">
-                No solo proteges tu marca.<br><em>También abres un nuevo negocio.</em>
+                No solo proteges tu marca.<br/><em>También abres un nuevo negocio.</em>
               </h2>
             </div>
             <p className="section-sub">

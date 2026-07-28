@@ -330,7 +330,7 @@ export default function IssuersPage() {
             <div className="problem-content fade-in">
               <div className="section-tag">El problema</div>
               <h2 className="section-title">
-                Los documentos ya no son suficientes para un mundo digital. Cualquiera los puede <em>falsificar</em>.
+                Los documentos ya no son suficientes para un mundo digital. Cualquiera los puede <em style={{color:'#E880C0'}}>falsificar</em>.
               </h2>
               <p className="section-sub">
                 Tu organización invierte tiempo y recursos en generar documentos que son la base de decisiones críticas para tus usuarios. 
@@ -463,7 +463,7 @@ export default function IssuersPage() {
             <div>
               <div className="section-tag">Beneficios para emisores</div>
               <h2 className="section-title">
-                No solo proteges tu marca.<br/><em>También abres un nuevo negocio.</em>
+                No solo proteges tu marca.<br/><em style={{color:'#E880C0'}}>También abres un nuevo negocio.</em>
               </h2>
             </div>
             <p className="section-sub">

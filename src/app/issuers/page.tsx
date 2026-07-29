@@ -74,6 +74,7 @@ body{font-family:'DM Sans',sans-serif;background:#F5F8FF;color:var(--text-body);
 .section-inner{max-width:1140px;margin:0 auto}
 .section-tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--magenta);margin-bottom:.75rem}
 .section-title{font-family:'DM Serif Display',serif;font-size:2.4rem;line-height:1.15;color:var(--navy);font-weight:400;margin-bottom:1rem;letter-spacing:-.02em}
+.section-title em{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;color:var(--magenta)}
 .section-sub{font-size:1.05rem;color:var(--text-muted);max-width:560px;line-height:1.7;font-weight:300}
 
 /* PROBLEM */
@@ -330,7 +331,7 @@ export default function IssuersPage() {
             <div className="problem-content fade-in">
               <div className="section-tag">El problema</div>
               <h2 className="section-title">
-                Los documentos ya no son suficientes para un mundo digital. Cualquiera los puede <em style={{color:'#E880C0'}}>falsificar</em>.
+                Los documentos ya no son suficientes para un mundo digital. Cualquiera los puede <em>falsificar</em>.
               </h2>
               <p className="section-sub">
                 Tu organización invierte tiempo y recursos en generar documentos que son la base de decisiones críticas para tus usuarios. 

@@ -198,6 +198,7 @@ body{font-family:'DM Sans',sans-serif;background:#F5F8FF;color:var(--text-body);
 
 @media(max-width:900px){
   .hero-inner,.problem-grid,.benefits-header,.int-grid{grid-template-columns:1fr}
+  .hero-inner em{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;color:var(--magenta)}
   .how-grid,.benefit-cards,.security-pillars,.cases-grid{grid-template-columns:1fr 1fr}
   .hero-right{display:none}
   .hero h1{font-size:2.4rem}

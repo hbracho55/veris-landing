@@ -233,6 +233,44 @@ body{font-family:'DM Sans',sans-serif;background:#F5F8FF;color:var(--text);line-
 .ct-icon{color:var(--green);font-size:.8rem}
 
 
+/* SECTORS */
+.sectors{background:#fff}
+.sectors-header{text-align:center;max-width:680px;margin:0 auto 3.5rem}
+.sectors-header .s-sub{margin:0 auto;text-align:center}
+.sector-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.35rem}
+.sec-card{background:var(--ice);border:1px solid var(--border);border-radius:18px;padding:1.75rem;position:relative;overflow:hidden;transition:transform .22s,box-shadow .22s,border-color .22s;cursor:default}
+.sec-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(30,53,100,.1);border-color:transparent;background:#fff}
+.sec-card__bar{position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.sec-card:hover .sec-card__bar{transform:scaleX(1)}
+.bar--blue{background:linear-gradient(90deg,var(--blue),var(--blue-soft))}
+.bar--magenta{background:linear-gradient(90deg,var(--magenta),var(--magenta-s))}
+.bar--green{background:linear-gradient(90deg,var(--green),#38C890)}
+.bar--violet{background:linear-gradient(90deg,#6C4AB0,#9B7FE0)}
+.bar--amber{background:linear-gradient(90deg,#D4870A,#F0A830)}
+.bar--teal{background:linear-gradient(90deg,#0E8FA0,#1DB8D0)}
+.sec-card__icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.1rem}
+.si--blue{background:var(--blue-pale)}.si--magenta{background:var(--magenta-pale)}.si--green{background:#E3F7F0}
+.si--violet{background:#F0EEFE}.si--amber{background:#FEF4E0}.si--teal{background:#E0F5F8}
+.sec-card__label{font-size:.8rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;margin-bottom:.4rem}
+.scl--blue{color:var(--blue)}.scl--magenta{color:var(--magenta)}.scl--green{color:var(--green)}
+.scl--violet{color:#6C4AB0}.scl--amber{color:#D4870A}.scl--teal{color:#0E8FA0}
+.sec-card h3{font-family:'DM Serif Display',serif;font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:.55rem;letter-spacing:-.01em;line-height:1.2}
+.sec-card p{font-size:.79rem;color:var(--muted);line-height:1.65;margin-bottom:1rem}
+.sec-card__docs{display:flex;flex-direction:column;gap:.38rem}
+.sec-doc{display:flex;align-items:center;gap:.5rem;font-size:.74rem;color:var(--faint)}
+.sec-doc::before{content:'→';font-size:.68rem;flex-shrink:0}
+.sec-card-cta{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:700;padding:.65rem 1.2rem;border-radius:10px;transition:all .25s;text-decoration:none;font-family:'DM Sans',sans-serif;letter-spacing:.02em;margin-top:1.25rem;cursor:default}
+.sec-card-cta--blue{background:rgba(68,114,196,.1);color:var(--blue);border:1px solid rgba(68,114,196,.3)}
+.sec-card-cta--blue:hover{background:linear-gradient(135deg,rgba(68,114,196,.8),rgba(68,114,196,.6));color:#fff;border-color:#4472C4;box-shadow:0 4px 20px rgba(68,114,196,.35);transform:translateY(-1px)}
+.sec-card-cta--green{background:rgba(29,158,117,.1);color:var(--green);border:1px solid rgba(29,158,117,.3)}
+.sec-card-cta--green:hover{background:linear-gradient(135deg,rgba(29,158,117,.78),rgba(29,158,117,.55));color:#fff;border-color:#1D9E75;box-shadow:0 4px 20px rgba(29,158,117,.35);transform:translateY(-1px)}
+.sec-card-cta--violet{background:rgba(108,74,176,.1);color:#6C4AB0;border:1px solid rgba(108,74,176,.3)}
+.sec-card-cta--violet:hover{background:linear-gradient(135deg,rgba(108,74,176,.78),rgba(108,74,176,.55));color:#fff;border-color:#6C4AB0;box-shadow:0 4px 20px rgba(108,74,176,.35);transform:translateY(-1px)}
+.sec-card-cta--magenta{background:rgba(192,56,138,.1);color:var(--magenta);border:1px solid rgba(192,56,138,.3)}
+.sec-card-cta--magenta:hover{background:linear-gradient(135deg,rgba(192,56,138,.78),rgba(192,56,138,.55));color:#fff;border-color:#C0388A;box-shadow:0 4px 20px rgba(192,56,138,.35);transform:translateY(-1px)}
+.sec-card-cta--teal{background:rgba(14,143,160,.1);color:#0E8FA0;border:1px solid rgba(14,143,160,.3)}
+.sec-card-cta--teal:hover{background:linear-gradient(135deg,rgba(14,143,160,.78),rgba(14,143,160,.55));color:#fff;border-color:#0E8FA0;box-shadow:0 4px 20px rgba(14,143,160,.35);transform:translateY(-1px)}
+
 /* ANIMATIONS */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 .reveal.up{opacity:1;transform:translateY(0)}
@@ -244,6 +282,7 @@ body{font-family:'DM Sans',sans-serif;background:#F5F8FF;color:var(--text);line-
 /* ── TABLET (≤900px) ─────────────────────────── */
 @media(max-width:900px){
   .prob-grid,.seg-cards,.sec-grid,.uc-header{grid-template-columns:1fr}
+  .sector-cards{grid-template-columns:1fr 1fr}
   .sec-right{display:none}
   .sol-steps,.uc-grid{grid-template-columns:1fr 1fr}
   .sec-pillars{grid-template-columns:1fr 1fr}
@@ -262,7 +301,7 @@ body{font-family:'DM Sans',sans-serif;background:#F5F8FF;color:var(--text);line-
 
 /* ── MOBILE (≤600px) ─────────────────────────── */
 @media(max-width:600px){
-  .sol-steps,.uc-grid,.sec-pillars,.seg-cards{grid-template-columns:1fr}
+  .sol-steps,.uc-grid,.sec-pillars,.seg-cards,.sector-cards{grid-template-columns:1fr}
   .hero-ctas{flex-direction:column;align-items:stretch}
   .btn-primary,.btn-outline{justify-content:center;width:100%}
   .hero h1{font-size:clamp(2rem,8vw,2.6rem)}
@@ -480,7 +519,7 @@ export default function Home() {
           <div className="sol-header reveal">
             <div className="s-tag blue">La solución</div>
             <h2 className="s-title">
-              Verificación directa desde la fuente.<br />Sin PDFs. Sin correos. Sin espera.
+              Verificación directa desde la fuente.<br /><em style={{ color: "var(--magenta-s)" }}>Sin PDFs. Sin correos. Sin espera.</em>
             </h2>
             <p className="s-sub" style={{ margin: "0 auto" }}>
               Veris se integra a tu arquitectura actual mediante APIs estándar y transforma los
@@ -520,6 +559,141 @@ export default function Home() {
                 fuente original. Sin intermediarios.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTORES */}
+      <section className="section sectors" id="sectores">
+        <div className="s-inner">
+          <div className="sectors-header reveal">
+            <div className="s-tag blue" style={{ display: "block", textAlign: "center" }}>Industrias</div>
+            <h2 className="s-title" style={{ textAlign: "center" }}>
+              Veris resuelve la verificación de identidad<br />y credenciales en{" "}
+              <em>cualquier industria.</em>
+            </h2>
+            <p className="s-sub" style={{ margin: "0 auto", textAlign: "center" }}>
+              Desde la banca hasta la salud, desde las instituciones educativas hasta el sector
+              público — Veris permite emitir, portar y verificar credenciales digitales en
+              segundos, sin papel y sin fraude.
+            </p>
+          </div>
+          <div className="sector-cards">
+
+            <div className="sec-card reveal reveal-delay-1">
+              <div className="sec-card__bar bar--blue"></div>
+              <div className="sec-card__icon si--blue">🏦</div>
+              <div className="sec-card__label scl--blue">Financieras</div>
+              <h3>Bancos, financieras y fintechs</h3>
+              <p>Verifique la identidad, ingresos y situación laboral de sus clientes en segundos — sin documentos en papel ni revisión manual. Emita sus propias credenciales y reciba un royalty por cada verificación exitosa.</p>
+              <div className="sec-card__docs">
+                <div className="sec-doc">Verificación de identidad e ingresos al instante</div>
+                <div className="sec-doc">Apertura de cuenta sin documentos físicos</div>
+                <div className="sec-doc">Autorización de operaciones críticas desde la app</div>
+                <div className="sec-doc">Acceso a productos según perfil real verificado</div>
+              </div>
+              <Link href="/financial" className="sec-card-cta sec-card-cta--blue">Ver solución para Financieras →</Link>
+            </div>
+
+            <div className="sec-card reveal reveal-delay-2">
+              <div className="sec-card__bar bar--blue"></div>
+              <div className="sec-card__icon si--blue">💼</div>
+              <div className="sec-card__label scl--blue">Empleadores</div>
+              <h3>Empresas e instituciones empleadoras</h3>
+              <p>Sus colaboradores pueden acreditar su empleo, renta y antigüedad en segundos desde su teléfono. Su empresa elimina las llamadas de verificación, automatiza los certificados laborales y recibe un royalty por cada validación.</p>
+              <div className="sec-card__docs">
+                <div className="sec-doc">Certificados laborales emitidos automáticamente</div>
+                <div className="sec-doc">Verificación de empleo sin llamadas a RR.HH.</div>
+                <div className="sec-doc">Control de acceso físico y digital</div>
+                <div className="sec-doc">Royalty por cada verificación de sus certificados</div>
+              </div>
+              <Link href="/employer" className="sec-card-cta sec-card-cta--blue">Ver solución para Empleadores →</Link>
+            </div>
+
+            <div className="sec-card reveal reveal-delay-2">
+              <div className="sec-card__bar bar--green"></div>
+              <div className="sec-card__icon si--green">🏥</div>
+              <div className="sec-card__label scl--green">Salud</div>
+              <h3>Clínicas, hospitales y laboratorios</h3>
+              <p>Las recetas falsificadas, los resultados manipulados y las licencias médicas fraudulentas son problemas reales de tu industria. Veris los elimina con firma criptográfica — y cumple el estándar <strong>HL7 FHIR</strong> para interoperabilidad clínica en Chile.</p>
+              <div className="sec-card__docs">
+                <div className="sec-doc">Recetas médicas verificables en farmacias</div>
+                <div className="sec-doc">Resultados de exámenes de laboratorio autenticados</div>
+                <div className="sec-doc">Licencias médicas para ISAPRE y empleadores</div>
+                <div className="sec-doc">Carnets de vacunación y protocolos de salud</div>
+                <div className="sec-doc">Informes clínicos y epicrisis verificables</div>
+              </div>
+              <div style={{ marginTop: "1.1rem", padding: ".65rem .9rem", background: "#E3F7F0", borderRadius: "8px", border: "1px solid rgba(29,158,117,.2)" }}>
+                <div style={{ fontSize: ".62rem", fontWeight: 700, letterSpacing: ".09em", textTransform: "uppercase" as const, color: "var(--green)", marginBottom: ".3rem" }}>Cumplimiento normativo salud</div>
+                <div style={{ display: "flex", flexWrap: "wrap" as const, gap: ".4rem" }}>
+                  {["HL7 FHIR R4", "MINSAL", "Ley 21.096"].map((t) => (
+                    <span key={t} style={{ fontSize: ".68rem", fontWeight: 600, padding: ".18rem .55rem", background: "rgba(29,158,117,.15)", borderRadius: "100px", color: "var(--green)" }}>{t}</span>
+                  ))}
+                </div>
+              </div>
+              <Link href="/healthcare" className="sec-card-cta sec-card-cta--green">Ver solución para Clínicas y Hospitales →</Link>
+            </div>
+
+            <div className="sec-card reveal reveal-delay-3">
+              <div className="sec-card__bar bar--violet"></div>
+              <div className="sec-card__icon si--violet">🎓</div>
+              <div className="sec-card__label scl--violet">Educación</div>
+              <h3>Universidades e instituciones educativas</h3>
+              <p>Los títulos falsos y los diplomas adulterados son un problema creciente para empleadores y entidades que confían en tu nombre. Emite credenciales académicas que cualquiera puede verificar en segundos, sin llamarte.</p>
+              <div className="sec-card__docs">
+                <div className="sec-doc">Títulos profesionales verificables</div>
+                <div className="sec-doc">Certificados de alumno regular y egreso</div>
+                <div className="sec-doc">Diplomas de postgrado y programas ejecutivos</div>
+                <div className="sec-doc">Constancias de acreditación institucional</div>
+              </div>
+              <Link href="/education" className="sec-card-cta sec-card-cta--violet">Ver solución para Educación →</Link>
+            </div>
+
+            <div className="sec-card reveal reveal-delay-1">
+              <div className="sec-card__bar bar--magenta"></div>
+              <div className="sec-card__icon si--magenta">🛡️</div>
+              <div className="sec-card__label scl--magenta">Aseguradoras</div>
+              <h3>Aseguradoras y corredoras de seguros</h3>
+              <p>Emite pólizas, coberturas y certificados de seguro como credenciales verificables. Reduce el fraude en la contratación y en los siniestros, y elimina la necesidad de validar documentos en papel.</p>
+              <div className="sec-card__docs">
+                <div className="sec-doc">Certificados de cobertura verificables</div>
+                <div className="sec-doc">Pólizas digitales con validez criptográfica</div>
+                <div className="sec-doc">Constancias de pago de prima</div>
+                <div className="sec-doc">Credenciales de beneficiarios para siniestros</div>
+              </div>
+              <span className="sec-card-cta sec-card-cta--magenta">Ver solución para Seguros →</span>
+            </div>
+
+            <div className="sec-card reveal reveal-delay-2">
+              <div className="sec-card__bar bar--teal"></div>
+              <div className="sec-card__icon si--teal">💊</div>
+              <div className="sec-card__label scl--teal">Inmobiliarias</div>
+              <h3>Inmobiliarias y corredoras de propiedades</h3>
+              <p>Verifique la solvencia de un postulante en segundos — sin pedirle liquidaciones en papel ni llamar a su empleador. El postulante presenta un QR desde su teléfono y su empresa recibe un perfil verificado al instante, imposible de falsificar.</p>
+              <div className="sec-card__docs">
+                <div className="sec-doc">Verificación de solvencia para arriendos y ventas</div>
+                <div className="sec-doc">Precalificación para proyectos en verde y en blanco</div>
+                <div className="sec-doc">Verificación de identidad en contratos</div>
+                <div className="sec-doc">Acceso exclusivo a propiedades premium por perfil verificado</div>
+              </div>
+              <Link href="/realstate" className="sec-card-cta sec-card-cta--teal">Ver solución para Inmobiliarias →</Link>
+            </div>
+
+            <div className="sec-card reveal reveal-delay-3">
+              <div className="sec-card__bar bar--teal"></div>
+              <div className="sec-card__icon si--teal">🏛️</div>
+              <div className="sec-card__label scl--teal">Gobierno</div>
+              <h3>Sector público e instituciones de gobierno</h3>
+              <p>Veris permite que el Estado emita acreditaciones digitales a los ciudadanos — para acceder a beneficios, trámites y servicios en segundos desde su teléfono, sin filas ni documentos en papel, con trazabilidad completa.</p>
+              <div className="sec-card__docs">
+                <div className="sec-doc">Identidad digital ciudadana verificable</div>
+                <div className="sec-doc">Acreditación de beneficios y subsidios al instante</div>
+                <div className="sec-doc">Trámites municipales sin filas ni papel</div>
+                <div className="sec-doc">Control de acceso físico para funcionarios</div>
+              </div>
+              <Link href="/government" className="sec-card-cta sec-card-cta--teal">Ver solución para Gobierno →</Link>
+            </div>
+
           </div>
         </div>
       </section>

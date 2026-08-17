@@ -25,7 +25,7 @@ a{text-decoration:none}img,svg{display:block;max-width:100%}
 .r1{transition-delay:.07s}.r2{transition-delay:.16s}.r3{transition-delay:.26s}.r4{transition-delay:.36s}
 
 /* HERO */
-.hero{background:var(--navy-deep);display:flex;align-items:flex-start;position:relative;overflow:hidden;padding-top:64px;isolation:isolate}
+.hero{background:var(--navy-deep);display:flex;align-items:flex-start;position:relative;overflow:hidden;padding-top:100px;isolation:isolate}
 .hero__canvas{position:absolute;inset:0;pointer-events:none;z-index:0}
 .hero__mesh{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 72% 28%,rgba(192,56,138,.17) 0%,transparent 62%),radial-gradient(ellipse 50% 40% at 12% 78%,rgba(68,114,196,.12) 0%,transparent 58%),radial-gradient(ellipse 35% 30% at 50% 5%,rgba(108,74,176,.1) 0%,transparent 55%)}
 .hero__grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:64px 64px}

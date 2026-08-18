@@ -465,7 +465,9 @@ export default function IssuersPage() {
             <div>
               <div className="section-tag">Beneficios para emisores</div>
               <h2 className="section-title">
-                No solo proteges tu marca.<br/><em style={{color:'#E880C0'}}>También abres un nuevo negocio.</em>
+                No solo proteges tu marca.
+                <br />
+                <em style={{ color: '#E880C0' }}>También abres un nuevo negocio.</em>
               </h2>
             </div>
             <p className="section-sub">

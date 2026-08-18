@@ -542,7 +542,7 @@ export default function IssuersPage() {
         <div class="wrap">
           <div class="sectors__header r">
             <span class="sec-tag st--blue" style="display:block;text-align:center">Sectores</span>
-            <h2 class="big-title" style="text-align:center">Si emites un documento que alguien<br>necesita verificar, <em>Veris es para ti.</em></h2>
+            <h2 class="big-title" style="text-align:center">Si emites un documento que alguien<br/>necesita verificar, <em>Veris es para ti.</em></h2>
             <p class="lead" style="margin:0 auto;text-align:center">No importa tu industria. Si generas datos sobre personas — laborales, clínicos, académicos o de identidad — Veris puede convertirlos en credenciales verificables en tiempo real.</p>
           </div>
           <div class="sec-grid">

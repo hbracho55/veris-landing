@@ -537,7 +537,7 @@ export default function IssuersPage() {
         </div>
       </section>
 
-      <!-- ════ SECTORES ════ -->
+      {/* SECTORES */}
       <section class="section sectors" id="sectores">
         <div class="wrap">
           <div class="sectors__header r">

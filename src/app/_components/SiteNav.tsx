@@ -64,9 +64,9 @@ export default function SiteNav() {
       <div className={`nav-drawer${open ? " is-open" : ""}`} aria-hidden={!open}>
         <div className="nav-drawer-links">
           <Link href="/" onClick={handleLinkClick}>Inicio</Link>
+          <Link href="/#sectores" onClick={handleLinkClick}>Industrias</Link>
           <Link href="/#ecosistema" onClick={handleLinkClick}>Ecosistema</Link>
           <Link href="/#seguridad" onClick={handleLinkClick}>Seguridad</Link>
-          <Link href="/#sectores" onClick={handleLinkClick}>Industrias</Link>
           <Link href="/#casos" onClick={handleLinkClick}>Casos de uso</Link>
           <DemoTrigger className="nav-drawer-pill" onClick={handleLinkClick}>
             Agendar demo

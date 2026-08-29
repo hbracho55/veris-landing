@@ -373,10 +373,10 @@ export default function Home() {
             </div>
             <h1>
               Tus documentos pueden 
-              <span className="accent"> ser falsificados.</span>
+              <span className="accent"> ser falsificados</span>. Tus credenciales Veris, no.
             </h1>
             <p className="hero-sub">
-              Tus credenciales Veris, no. Veris es una infraestructura que permite a cualquier institución{" "}
+              Veris es una infraestructura que permite a cualquier institución{" "}
               <strong>emitir certificados verificables</strong> y a cualquier organización{" "}
               <strong>validarlos en segundos</strong> — sin llamadas, sin papel, sin fraude.
             </p>

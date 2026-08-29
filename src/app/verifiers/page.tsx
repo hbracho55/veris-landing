@@ -53,7 +53,7 @@ a{text-decoration:none}
 .rd1{transition-delay:.08s}.rd2{transition-delay:.18s}.rd3{transition-delay:.28s}.rd4{transition-delay:.38s}
 
 /* HERO */
-.hero{min-height:100vh;background:var(--navy-deep);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:64px}
+.hero{min-height:100vh;background:var(--navy-deep);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:100px}
 .hero__canvas{position:absolute;inset:0;pointer-events:none}
 .hero__mesh{position:absolute;inset:0;background:
   radial-gradient(ellipse 80% 60% at 68% 22%, rgba(192,56,138,.2) 0%, transparent 60%),

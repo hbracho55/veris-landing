@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Veris para Emisores — Plataformas de RR.HH., clínicas, hospitales, universidades y empresas. Convierte los documentos que ya emites en credenciales digitales verificables, seguros e imposibles de falsificar."/>
+<title>Veris — Para organizaciones que emiten documentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1E3564;--navy-mid:#243A6A;--navy-deep:#111E3C;
+  --blue:#4472C4;--blue-s:#5B8FC4;--blue-pale:#EEF3FB;--blue-mid:#D8E5F5;
+  --magenta:#C0388A;--magenta-s:#D058A0;--magenta-pale:#FAE0F2;
+  --green:#1D9E75;--green-pale:#E3F7F0;
+  --amber:#D4870A;--amber-pale:#FEF4E0;
+  --teal:#0E8FA0;--teal-pale:#E0F5F8;
+  --violet:#6C4AB0;--violet-pale:#F0EEFE;
+  --white:#fff;--ice:#F4F7FD;
+  --text:#1A2B4A;--muted:#5A6A8A;--faint:#9AAAC0;--border:#DDE6F4;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px}
+a{text-decoration:none}img,svg{display:block;max-width:100%}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+.section{padding:clamp(5rem,10vw,8rem) 0}
+.r{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.r.in{opacity:1;transform:none}
+.r1{transition-delay:.07s}.r2{transition-delay:.16s}.r3{transition-delay:.26s}.r4{transition-delay:.36s}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0 clamp(1.25rem,5vw,3rem)}
+.nav__bg{position:absolute;inset:0;background:rgba(17,30,60,.93);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07)}
+.nav__inner{position:relative;max-width:1160px;margin:0 auto;height:62px;display:flex;align-items:center;justify-content:space-between}
+.nav__logo{display:flex;align-items:center;gap:.55rem}
+.nav__logo svg{width:26px;height:26px;flex-shrink:0}
+.nav__logo-text{font-family:'Syne',sans-serif;font-weight:700;font-size:1.18rem;color:#fff;letter-spacing:-.02em}
+.nav__crumb{font-size:.74rem;color:rgba(255,255,255,.3);padding-left:.55rem;border-left:1px solid rgba(255,255,255,.14);margin-left:.55rem}
+.nav__links{display:flex;align-items:center;gap:1.75rem}
+.nav__links a{color:rgba(255,255,255,.48);font-size:.82rem;letter-spacing:.01em;transition:color .2s}
+.nav__links a:hover{color:#fff}
+.nav__cta{background:var(--magenta)!important;color:#fff!important;padding:.45rem 1.25rem;border-radius:100px;font-weight:600!important;font-size:.8rem!important;transition:background .2s,transform .15s!important}
+.nav__cta:hover{background:#A8307A!important;transform:translateY(-1px)!important}
+
+/* ── HERO ── */
+.hero{min-height:100vh;background:var(--navy-deep);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:62px}
+.hero__canvas{position:absolute;inset:0;pointer-events:none}
+.hero__mesh{position:absolute;inset:0;background:
+  radial-gradient(ellipse 70% 55% at 72% 28%,rgba(68,114,196,.2) 0%,transparent 62%),
+  radial-gradient(ellipse 55% 45% at 12% 75%,rgba(192,56,138,.12) 0%,transparent 58%),
+  radial-gradient(ellipse 35% 30% at 50% 5%,rgba(29,158,117,.08) 0%,transparent 55%)}
+.hero__grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:64px 64px}
+.hero__glow{position:absolute;top:5%;right:3%;width:520px;height:520px;background:radial-gradient(circle,rgba(68,114,196,.14) 0%,transparent 65%);border-radius:50%;animation:gpulse 5s ease-in-out infinite}
+@keyframes gpulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.08);opacity:.5}}
+.hero__inner{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:5rem clamp(1.25rem,5vw,3rem);display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:center}
+.hero__pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(68,114,196,.15);border:1px solid rgba(68,114,196,.3);color:rgba(140,180,240,.9);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .95rem;border-radius:100px;margin-bottom:1.5rem}
+.hero__pill-dot{width:5px;height:5px;background:rgba(140,180,240,.9);border-radius:50%;animation:bdot 2.2s ease-in-out infinite}
+@keyframes bdot{0%,100%{opacity:1}50%{opacity:.2}}
+.hero__h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,4.8vw,3.7rem);line-height:1.03;color:#fff;font-weight:800;letter-spacing:-.035em;margin-bottom:1.4rem}
+.hero__h1 em{font-family:'DM Serif Display',serif;font-style:italic;font-weight:400;color:var(--magenta-s)}
+.hero__sub{font-size:1.05rem;color:rgba(255,255,255,.58);line-height:1.8;margin-bottom:2.5rem;font-weight:300;max-width:490px}
+.hero__sub strong{color:rgba(255,255,255,.85);font-weight:500}
+.hero__btns{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:2.75rem}
+.btn-main{background:var(--magenta);color:#fff;padding:.85rem 1.85rem;border-radius:10px;font-size:.97rem;font-weight:600;font-family:'DM Sans',sans-serif;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-main:hover{background:#A8307A;transform:translateY(-2px);box-shadow:0 10px 28px rgba(192,56,138,.4)}
+.btn-ghost{background:rgba(255,255,255,.07);color:rgba(255,255,255,.75);padding:.85rem 1.5rem;border-radius:10px;font-size:.92rem;font-family:'DM Sans',sans-serif;border:1px solid rgba(255,255,255,.15);transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.35);color:#fff}
+.hero__trust{display:flex;flex-wrap:wrap;gap:1rem}
+.trust-chip{display:inline-flex;align-items:center;gap:.4rem;font-size:.74rem;color:rgba(255,255,255,.38)}
+.trust-chip__ico{width:16px;height:16px;border-radius:50%;background:rgba(29,158,117,.2);border:1px solid rgba(29,158,117,.35);display:flex;align-items:center;justify-content:center;font-size:.55rem;color:#5DD4A8}
+
+/* Hero card — emisión flow */
+.hero__card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;backdrop-filter:blur(10px);box-shadow:0 32px 80px rgba(0,0,0,.3)}
+.hero__card-top{padding:1.4rem 1.6rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.card__lbl{font-size:.63rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:1.2rem}
+.emit-tabs{display:flex;gap:.5rem;margin-bottom:1.2rem;overflow-x:auto;scrollbar-width:none}
+.emit-tabs::-webkit-scrollbar{display:none}
+.emit-tab{font-size:.7rem;font-weight:600;padding:.28rem .7rem;border-radius:100px;cursor:pointer;white-space:nowrap;border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.32);transition:all .2s}
+.emit-tab:hover{color:rgba(255,255,255,.65)}
+.emit-tab.active{color:#fff;background:rgba(68,114,196,.25);border-color:rgba(68,114,196,.4)}
+.emit-tab.active.t-health{background:rgba(29,158,117,.22);border-color:rgba(29,158,117,.36)}
+.emit-tab.active.t-edu{background:rgba(108,74,176,.22);border-color:rgba(108,74,176,.36)}
+.doc-panel{display:none}
+.doc-panel.active{display:block;animation:fadein .3s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.doc-rows{display:flex;flex-direction:column;gap:.55rem}
+.doc-row{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem}
+.doc-lbl{font-size:.7rem;color:rgba(255,255,255,.33);white-space:nowrap}
+.doc-val{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.85);text-align:right}
+.doc-val--big{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#fff}
+.doc-seal{margin-top:.9rem;padding-top:.75rem;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:.45rem}
+.seal-ico{width:18px;height:18px;border-radius:50%;background:rgba(68,114,196,.2);border:1px solid rgba(68,114,196,.32);display:flex;align-items:center;justify-content:center;font-size:.56rem;color:#90B8F0;flex-shrink:0}
+.seal-txt{font-size:.65rem;color:rgba(255,255,255,.32)}.seal-txt strong{color:rgba(255,255,255,.56);font-weight:500}
+.hero__card-stats{display:grid;grid-template-columns:repeat(3,1fr);padding:1.1rem 1.6rem}
+.stat-col{text-align:center;padding:.4rem 0}
+.stat-col+.stat-col{border-left:1px solid rgba(255,255,255,.07)}
+.stat-val{font-family:'Syne',sans-serif;font-size:1.45rem;font-weight:800;color:#fff;line-height:1;letter-spacing:-.02em}
+.stat-val--pink{color:var(--magenta-s)}
+.stat-lab{font-size:.6rem;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;margin-top:.3rem}
+
+/* ── STRIP ── */
+.strip{background:var(--navy-mid);padding:.9rem 0;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
+.strip__inner{max-width:1160px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem);display:flex;align-items:center;gap:1.75rem;flex-wrap:wrap}
+.strip__lbl{font-size:.63rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.2);white-space:nowrap}
+.strip__pills{display:flex;gap:.75rem;flex-wrap:wrap}
+.strip__pill{font-size:.77rem;color:rgba(255,255,255,.27);padding:.28rem .8rem;border:1px solid rgba(255,255,255,.08);border-radius:100px}
+
+/* ── PROBLEM ── */
+.problem{background:#fff}
+.problem__grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center}
+.big-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.2vw,2.55rem);font-weight:800;line-height:1.08;color:var(--navy);letter-spacing:-.03em;margin-bottom:.85rem}
+.big-title em{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;color:var(--magenta)}
+.big-title--white{color:#fff}.big-title--white em{color:var(--magenta-s)}
+.lead{font-size:1rem;color:var(--muted);line-height:1.78;font-weight:300}
+.lead--white{color:rgba(255,255,255,.52)}
+.sec-tag{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:.8rem}
+.st--magenta{color:var(--magenta)}.st--blue{color:var(--blue)}.st--green{color:var(--green)}.st--pale{color:rgba(192,56,138,.85)}
+.pi-list{display:flex;flex-direction:column;gap:.8rem;margin-top:1.75rem}
+.pi{display:flex;gap:1rem;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:12px;transition:border-color .2s,box-shadow .2s}
+.pi:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(68,114,196,.08)}
+.pi__ico{width:34px;height:34px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.ico-r{background:#FEE8E8}.ico-a{background:#FEF4E0}.ico-b{background:var(--blue-pale)}.ico-p{background:var(--violet-pale)}
+.pi__title{font-size:.875rem;font-weight:600;color:var(--navy);margin-bottom:.2rem}
+.pi__desc{font-size:.78rem;color:var(--muted);line-height:1.58}
+.prob-card{background:var(--ice);border:1px solid var(--border);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden}
+.prob-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--magenta))}
+.prob-quote{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--navy);line-height:1.55;font-style:italic;margin-bottom:1.2rem}
+.prob-quote mark{background:none;color:var(--magenta);font-style:normal;font-family:'Syne',sans-serif;font-weight:800;font-size:.92rem}
+.prob-body{font-size:.82rem;color:var(--muted);line-height:1.68;margin-bottom:1.4rem}
+.prob-data{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.pd{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem}
+.pd__num{font-family:'Syne',sans-serif;font-size:1.55rem;font-weight:800;color:var(--navy);line-height:1;letter-spacing:-.02em}
+.pd__num--m{color:var(--magenta)}
+.pd__label{font-size:.7rem;color:var(--muted);margin-top:.25rem;line-height:1.45}
+
+/* ── SECTOR CARDS ── */
+.sectors{background:var(--ice)}
+.sectors__header{text-align:center;max-width:660px;margin:0 auto 3.5rem}
+.sectors__header .lead{margin:0 auto}
+.sec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.35rem}
+.sec-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:1.75rem;position:relative;overflow:hidden;transition:transform .22s,box-shadow .22s,border-color .22s;cursor:default}
+.sec-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(30,53,100,.1);border-color:transparent}
+.sec-card__bar{position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.sec-card:hover .sec-card__bar{transform:scaleX(1)}
+.bar--blue{background:linear-gradient(90deg,var(--blue),var(--blue-s))}
+.bar--magenta{background:linear-gradient(90deg,var(--magenta),var(--magenta-s))}
+.bar--green{background:linear-gradient(90deg,var(--green),#38C890)}
+.bar--violet{background:linear-gradient(90deg,var(--violet),#9B7FE0)}
+.bar--amber{background:linear-gradient(90deg,var(--amber),#F0A830)}
+.bar--teal{background:linear-gradient(90deg,var(--teal),#1DB8D0)}
+.sec-card__icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.1rem}
+.si--blue{background:var(--blue-pale)}.si--magenta{background:var(--magenta-pale)}.si--green{background:var(--green-pale)}
+.si--violet{background:var(--violet-pale)}.si--amber{background:var(--amber-pale)}.si--teal{background:var(--teal-pale)}
+.sec-card__label{font-size:.63rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;margin-bottom:.4rem}
+.scl--blue{color:var(--blue)}.scl--magenta{color:var(--magenta)}.scl--green{color:var(--green)}
+.scl--violet{color:var(--violet)}.scl--amber{color:var(--amber)}.scl--teal{color:var(--teal)}
+.sec-card h3{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:.55rem;letter-spacing:-.01em;line-height:1.2}
+.sec-card p{font-size:.79rem;color:var(--muted);line-height:1.65;margin-bottom:1rem}
+.sec-card__docs{display:flex;flex-direction:column;gap:.38rem}
+.sec-doc{display:flex;align-items:center;gap:.5rem;font-size:.74rem;color:var(--faint)}
+.sec-doc::before{content:'→';font-size:.68rem;flex-shrink:0}
+
+/* ── HOW IT WORKS ── */
+.how{background:#fff}
+.how__grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.steps-list{display:flex;flex-direction:column;gap:0;margin-top:2.25rem}
+.step{display:flex;gap:1.25rem;padding:1.4rem 0;border-bottom:1px solid var(--border)}
+.step:last-child{border-bottom:none}
+.step__num{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;flex-shrink:0}
+.sn-1{background:var(--blue)}.sn-2{background:var(--magenta)}.sn-3{background:var(--green)}.sn-4{background:var(--navy)}
+.step h4{font-family:'Syne',sans-serif;font-size:.93rem;font-weight:700;color:var(--navy);margin-bottom:.35rem;letter-spacing:-.01em}
+.step p{font-size:.81rem;color:var(--muted);line-height:1.62}
+.code-window{background:#0D1B33;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.code-bar{display:flex;gap:.4rem;padding:.85rem 1.1rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.code-dot{width:9px;height:9px;border-radius:50%}
+.cd1{background:#FF5F57}.cd2{background:#FEBC2E}.cd3{background:#28C840}
+.code-body{padding:1.2rem 1.1rem;font-family:'SF Mono','Courier New',monospace;font-size:.74rem;line-height:1.88}
+.cc{color:#5A7A8A}.ck{color:#90B8F0}.cs{color:#5DD4A8}.cv{color:#FAC775}.cp{color:#E880C0}
+
+/* ── BENEFITS ── */
+.benefits{background:var(--ice)}
+.benefits__header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:3rem}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.benefit-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1.6rem;transition:all .22s;position:relative;overflow:hidden}
+.benefit-card:hover{border-color:var(--blue);box-shadow:0 8px 26px rgba(68,114,196,.09);transform:translateY(-2px)}
+.benefit-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transition:transform .25s;transform-origin:left}
+.benefit-card:hover::before{transform:scaleX(1)}
+.bc--m::before{background:var(--magenta)}.bc--b::before{background:var(--blue)}.bc--g::before{background:var(--green)}
+.benefit-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;font-size:1.1rem}
+.bi--m{background:var(--magenta-pale)}.bi--b{background:var(--blue-pale)}.bi--g{background:var(--green-pale)}
+.benefit-title{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:700;color:var(--navy);margin-bottom:.55rem;letter-spacing:-.01em}
+.benefit-desc{font-size:.79rem;color:var(--muted);line-height:1.62}
+.benefit-highlight{margin-top:.85rem;padding-top:.75rem;border-top:1px solid var(--border);font-size:.72rem;font-weight:600}
+.bh--m{color:var(--magenta)}.bh--b{color:var(--blue)}.bh--g{color:var(--green)}
+
+/* ── SECURITY ── */
+.security{background:var(--navy-deep);position:relative;overflow:hidden}
+.security::after{content:'';position:absolute;top:-35%;right:-18%;width:680px;height:680px;background:radial-gradient(circle,rgba(68,114,196,.08) 0%,transparent 62%);border-radius:50%;pointer-events:none}
+.security__inner{position:relative;z-index:1}
+.security__grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.security__pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-top:2.25rem}
+.pillar{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.2rem;transition:border-color .2s}
+.pillar:hover{border-color:rgba(255,255,255,.16)}
+.pillar__ico{font-size:1.2rem;margin-bottom:.75rem}
+.pillar__name{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:#fff;margin-bottom:.35rem}
+.pillar__desc{font-size:.75rem;color:rgba(255,255,255,.38);line-height:1.58}
+.pillar__badge{display:inline-block;margin-top:.65rem;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;border-radius:100px}
+.pb--blue{background:rgba(68,114,196,.14);color:rgba(100,148,220,.9)}
+.pb--green{background:rgba(29,158,117,.14);color:rgba(50,188,135,.85)}
+.pb--magenta{background:rgba(192,56,138,.14);color:rgba(208,88,160,.9)}
+.pb--amber{background:rgba(180,140,40,.14);color:rgba(210,170,60,.9)}
+.compliance-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1.75rem;margin-bottom:1.25rem}
+.compliance-box__title{font-size:.63rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:1.2rem}
+.ci-list{display:flex;flex-direction:column;gap:.6rem}
+.ci{display:flex;align-items:center;gap:.75rem;padding:.7rem .9rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px}
+.ci__chk{width:20px;height:20px;border-radius:50%;background:rgba(29,158,117,.14);border:1px solid rgba(29,158,117,.28);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:#5DD4A8;flex-shrink:0}
+.ci__text{font-size:.8rem;color:rgba(255,255,255,.52);flex:1}
+.ci__badge{font-size:.62rem;font-weight:600;color:rgba(68,114,196,.65);letter-spacing:.03em}
+.integration-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.2rem 1.5rem}
+.integration-box p{font-size:.8rem;color:rgba(255,255,255,.42);line-height:1.68;margin-bottom:.65rem}
+.integration-box a{font-size:.78rem;color:rgba(68,114,196,.8);font-weight:500;transition:color .2s}
+.integration-box a:hover{color:#90B8F0}
+
+/* ── CTA ── */
+.cta-s{background:var(--navy-deep);position:relative;overflow:hidden;padding:clamp(5.5rem,12vw,10rem) 0;border-top:1px solid rgba(255,255,255,.06)}
+.cta-s__orb{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 50% 55%,rgba(68,114,196,.13) 0%,rgba(192,56,138,.07) 45%,transparent 70%)}
+.cta-s__inner{position:relative;z-index:1;text-align:center;max-width:700px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+.cta-eyebrow{display:inline-flex;align-items:center;gap:.45rem;font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(192,56,138,.85);margin-bottom:1.1rem}
+.cta-s h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,3.8vw,3rem);font-weight:800;color:#fff;margin-bottom:1.1rem;line-height:1.07;letter-spacing:-.03em}
+.cta-s h2 em{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;color:var(--magenta-s)}
+.cta-s p{font-size:1rem;color:rgba(255,255,255,.5);margin-bottom:2.5rem;font-weight:300;line-height:1.8}
+.cta-s__btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:2.25rem}
+.cta-s__reassure{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.cta-s__reassure span{display:flex;align-items:center;gap:.4rem;font-size:.74rem;color:rgba(255,255,255,.3)}
+.cta-s__reassure span::before{content:'✓';color:var(--green)}
+
+/* ── FOOTER ── */
+.footer{background:var(--navy-mid);border-top:1px solid rgba(255,255,255,.06);padding:2.25rem clamp(1.25rem,5vw,3rem)}
+.footer__inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem}
+.footer__brand{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:rgba(255,255,255,.42)}
+.footer__links{display:flex;gap:1.75rem;flex-wrap:wrap}
+.footer__links a{font-size:.75rem;color:rgba(255,255,255,.3);transition:color .2s}
+.footer__links a:hover{color:rgba(255,255,255,.7)}
+.footer__copy{font-size:.7rem;color:rgba(255,255,255,.2)}
+
+@media(max-width:980px){
+  .hero__inner{grid-template-columns:1fr}.hero__right{display:none}
+  .problem__grid{grid-template-columns:1fr}
+  .sec-grid{grid-template-columns:1fr 1fr}
+  .how__grid{grid-template-columns:1fr}
+  .security__grid{grid-template-columns:1fr}
+  .benefits__header{grid-template-columns:1fr}
+  .benefits-grid{grid-template-columns:1fr 1fr}
+  .nav__crumb{display:none}
+}
+@media(max-width:640px){
+  .sec-grid,.benefits-grid{grid-template-columns:1fr}
+  .security__pillars{grid-template-columns:1fr 1fr}
+  .nav__links{display:none}
+  .hero__h1{font-size:2.3rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav">
+  <div class="nav__bg"></div>
+  <div class="nav__inner">
+    <a href="veris_home.html" class="nav__logo">
+      <svg viewBox="0 0 28 28" fill="none">
+        <path d="M2 2L14 26L18 16L10 2Z" fill="url(#nG1)"/>
+        <path d="M14 2L26 26L22 16L18 2Z" fill="url(#nG2)"/>
+        <defs>
+          <linearGradient id="nG1" x1="2" y1="2" x2="14" y2="26" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#5B74C8"/><stop offset="100%" stop-color="#C0388A"/></linearGradient>
+          <linearGradient id="nG2" x1="26" y1="2" x2="14" y2="26" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C0388A"/><stop offset="100%" stop-color="#4472C4"/></linearGradient>
+        </defs>
+      </svg>
+      <span class="nav__logo-text">Veris</span>
+      <span class="nav__crumb">Para Emisores</span>
+    </a>
+    <div class="nav__links">
+      <a href="#problema">El problema</a>
+      <a href="#sectores">Sectores</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#seguridad">Seguridad</a>
+      <a href="#demo" class="nav__cta">Agendar demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section class="hero" id="inicio">
+  <div class="hero__canvas">
+    <div class="hero__mesh"></div>
+    <div class="hero__grid"></div>
+    <div class="hero__glow"></div>
+  </div>
+  <div class="hero__inner">
+    <div class="hero__left r">
+      <div class="hero__pill"><div class="hero__pill-dot"></div>Para organizaciones emisoras</div>
+      <h1 class="hero__h1">Los documentos que emites<br>pueden volverse <em>imposibles de falsificar.</em></h1>
+      <p class="hero__sub">Tu organización ya genera los datos más valiosos de tus usuarios — laborales, clínicos, académicos o de identidad. Veris los convierte en <strong>credenciales digitales verificables</strong> que cualquier institución valida en segundos, sin llamadas, sin papel y sin intermediarios.</p>
+      <div class="hero__btns">
+        <a href="#demo" class="btn-main">Agendar una demo →</a>
+        <a href="#sectores" class="btn-ghost">Ver mi sector</a>
+      </div>
+      <div class="hero__trust">
+        <div class="trust-chip"><div class="trust-chip__ico">✓</div><strong style="color:rgba(255,255,255,.75)">Gratis para emisores</strong></div>
+        <div class="trust-chip"><div class="trust-chip__ico">✓</div>El verificador paga, tú cobras</div>
+        <div class="trust-chip"><div class="trust-chip__ico">✓</div>Sin cambios en tu arquitectura</div>
+        <div class="trust-chip"><div class="trust-chip__ico">✓</div>Zero Data Liability</div>
+      </div>
+    </div>
+    <div class="hero__right r r2">
+      <div class="hero__card">
+        <div class="hero__card-top">
+          <div class="card__lbl">Credenciales emitidas — selecciona tu tipo</div>
+          <div class="emit-tabs">
+            <div class="emit-tab active t-work" onclick="switchDoc(0,this)">💼 RR.HH.</div>
+            <div class="emit-tab t-health" onclick="switchDoc(1,this)">🏥 Salud</div>
+            <div class="emit-tab t-edu" onclick="switchDoc(2,this)">🎓 Educación</div>
+          </div>
+          <!-- RR.HH. -->
+          <div class="doc-panel active" id="dp0">
+            <div class="doc-rows">
+              <div class="doc-row"><span class="doc-lbl">Tipo de credencial</span><span class="doc-val doc-val--big">Liquidación</span></div>
+              <div class="doc-row"><span class="doc-lbl">Trabajador</span><span class="doc-val">Carlos M. · 12.345.678-9</span></div>
+              <div class="doc-row"><span class="doc-lbl">Renta líquida</span><span class="doc-val">$1.850.000</span></div>
+              <div class="doc-row"><span class="doc-lbl">Periodo</span><span class="doc-val">Diciembre 2024</span></div>
+            </div>
+            <div class="doc-seal"><div class="seal-ico">🔐</div><div class="seal-txt">Firmada por <strong>tu plataforma</strong> · Estándar W3C · Inmutable</div></div>
+          </div>
+          <!-- Salud -->
+          <div class="doc-panel" id="dp1">
+            <div class="doc-rows">
+              <div class="doc-row"><span class="doc-lbl">Tipo de credencial</span><span class="doc-val doc-val--big">Receta médica</span></div>
+              <div class="doc-row"><span class="doc-lbl">Paciente</span><span class="doc-val">Ana P. · 09.876.543-2</span></div>
+              <div class="doc-row"><span class="doc-lbl">Medicamento</span><span class="doc-val">Amoxicilina 500mg</span></div>
+              <div class="doc-row"><span class="doc-lbl">Válida hasta</span><span class="doc-val">31 / 01 / 2025</span></div>
+            </div>
+            <div class="doc-seal"><div class="seal-ico">🔐</div><div class="seal-txt">Firmada por <strong>tu clínica u hospital</strong> · Estándar W3C · Inmutable</div></div>
+          </div>
+          <!-- Educación -->
+          <div class="doc-panel" id="dp2">
+            <div class="doc-rows">
+              <div class="doc-row"><span class="doc-lbl">Tipo de credencial</span><span class="doc-val doc-val--big">Título profesional</span></div>
+              <div class="doc-row"><span class="doc-lbl">Titulado</span><span class="doc-val">María S. · 15.432.167-8</span></div>
+              <div class="doc-row"><span class="doc-lbl">Carrera</span><span class="doc-val">Ing. Civil Industrial</span></div>
+              <div class="doc-row"><span class="doc-lbl">Año de egreso</span><span class="doc-val">2022 · Acreditado</span></div>
+            </div>
+            <div class="doc-seal"><div class="seal-ico">🔐</div><div class="seal-txt">Firmada por <strong>tu institución</strong> · Estándar W3C · Inmutable</div></div>
+          </div>
+        </div>
+        <div class="hero__card-stats">
+          <div class="stat-col"><div class="stat-val stat-val--pink">$0</div><div class="stat-lab">Costo para ti</div></div>
+          <div class="stat-col"><div class="stat-val">25%</div><div class="stat-lab">Revenue por validación</div></div>
+          <div class="stat-col"><div class="stat-val">&lt;2s</div><div class="stat-lab">Verificación</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip__inner">
+    <div class="strip__lbl">Diseñado para</div>
+    <div class="strip__pills">
+      <span class="strip__pill">Plataformas de nómina</span>
+      <span class="strip__pill">Sistemas HCM</span>
+      <span class="strip__pill">Clínicas y hospitales</span>
+      <span class="strip__pill">Laboratorios</span>
+      <span class="strip__pill">Universidades</span>
+      <span class="strip__pill">Instituciones educativas</span>
+      <span class="strip__pill">ERP con módulo RR.HH.</span>
+      <span class="strip__pill">ISAPRES y Fonasa</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════ MODELO DE NEGOCIO ════ -->
+<section style="background:#fff;padding:clamp(3rem,6vw,5rem) 0;border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="r" style="text-align:center;margin-bottom:2.5rem">
+      <span style="display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:.75rem">Modelo de negocio</span>
+      <h2 class="big-title" style="text-align:center">Integrar Veris <em>no te cuesta nada.</em><br>Te genera ingresos.</h2>
+      <p class="lead" style="margin:0 auto;text-align:center;max-width:580px">El emisor nunca paga por usar Veris. Es el verificador — el banco, la aseguradora, la farmacia — quien paga por acceder a datos verificados. Y tú, como fuente de esos datos, recibes el 25% de cada validación.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem" class="r">
+
+      <!-- Emisor -->
+      <div style="border-radius:16px;padding:1.75rem;background:var(--green-pale);border:1.5px solid rgba(29,158,117,.25);position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)"></div>
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.1rem">
+          <div style="width:42px;height:42px;border-radius:12px;background:rgba(29,158,117,.18);border:1px solid rgba(29,158,117,.3);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">🏢</div>
+          <div>
+            <div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:.2rem">Tú — el emisor</div>
+            <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:var(--navy)">Clínica, plataforma de RR.HH., universidad…</div>
+          </div>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.55rem">
+          <li style="display:flex;align-items:flex-start;gap:.6rem;font-size:.8rem;color:var(--muted)"><span style="color:var(--green);font-weight:700;flex-shrink:0">✓</span><span><strong style="color:var(--text)">No pagas nada</strong> por integrar Veris ni por emitir credenciales.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:.6rem;font-size:.8rem;color:var(--muted)"><span style="color:var(--green);font-weight:700;flex-shrink:0">✓</span><span><strong style="color:var(--text)">Recibes el 25%</strong> de cada validación que terceros hagan sobre tus datos.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:.6rem;font-size:.8rem;color:var(--muted)"><span style="color:var(--green);font-weight:700;flex-shrink:0">✓</span><span>Tu integración se amortiza desde la primera validación — antes incluso de terminar el piloto.</span></li>
+        </ul>
+        <div style="margin-top:1.25rem;padding:.75rem 1rem;background:rgba(29,158,117,.1);border-radius:10px;font-size:.82rem;font-weight:700;color:var(--green);text-align:center">
+          Tu costo: $0 &nbsp;·&nbsp; Tu ingreso: 25% por validación
+        </div>
+      </div>
+
+      <!-- Flecha central -->
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;padding:1rem">
+        <div style="text-align:center">
+          <div style="font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;color:var(--faint);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem">Flujo de valor</div>
+          <div style="font-size:1.5rem;color:var(--border)">↕</div>
+        </div>
+        <div style="background:var(--navy-deep);border-radius:14px;padding:1.1rem 1.25rem;text-align:center;border:1px solid rgba(255,255,255,.08)">
+          <div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.35rem">Infraestructura</div>
+          <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:.2rem">Veris</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.4);line-height:1.5">Firma · Entrega · Verifica<br>Gestiona el revenue</div>
+        </div>
+        <div style="font-size:1.5rem;color:var(--border)">↕</div>
+      </div>
+
+      <!-- Verificador -->
+      <div style="border-radius:16px;padding:1.75rem;background:var(--magenta-pale);border:1.5px solid rgba(192,56,138,.2);position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--magenta)"></div>
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.1rem">
+          <div style="width:42px;height:42px;border-radius:12px;background:rgba(192,56,138,.15);border:1px solid rgba(192,56,138,.25);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">🔍</div>
+          <div>
+            <div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--magenta);margin-bottom:.2rem">El verificador — quien paga</div>
+            <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:var(--navy)">Banco, aseguradora, farmacia, empleador…</div>
+          </div>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.55rem">
+          <li style="display:flex;align-items:flex-start;gap:.6rem;font-size:.8rem;color:var(--muted)"><span style="color:var(--magenta);font-weight:700;flex-shrink:0">→</span><span>Paga una <strong style="color:var(--text)">tarifa por cada validación</strong> que realiza sobre tus credenciales.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:.6rem;font-size:.8rem;color:var(--muted)"><span style="color:var(--magenta);font-weight:700;flex-shrink:0">→</span><span>Accede a datos verificados en &lt;2 segundos en vez de llamarte o esperar días.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:.6rem;font-size:.8rem;color:var(--muted)"><span style="color:var(--magenta);font-weight:700;flex-shrink:0">→</span><span>Lo que paga es menor que el costo de sus verificaciones manuales actuales — todos ganan.</span></li>
+        </ul>
+        <div style="margin-top:1.25rem;padding:.75rem 1rem;background:rgba(192,56,138,.08);border-radius:10px;font-size:.82rem;font-weight:700;color:var(--magenta);text-align:center">
+          Su costo: fee por validación &nbsp;·&nbsp; Tu ganancia: 25%
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ EL PROBLEMA ════ -->
+<section class="section problem" id="problema">
+  <div class="wrap">
+    <div class="problem__grid">
+      <div class="r">
+        <span class="sec-tag st--magenta">El problema</span>
+        <h2 class="big-title">Emites miles de documentos.<br>Cualquiera los puede <em>falsificar.</em></h2>
+        <p class="lead">Tu organización invierte tiempo y recursos en generar documentos que son la base de decisiones críticas para tus usuarios. El problema es que un PDF, una hoja firmada o un certificado en papel se pueden editar con herramientas gratuitas en menos de 5 minutos.</p>
+        <div class="pi-list">
+          <div class="pi r r1">
+            <div class="pi__ico ico-r">⚠️</div>
+            <div><div class="pi__title">El fraude daña tu reputación</div><div class="pi__desc">Cuando alguien falsifica un documento tuyo, tu marca es la víctima. Bancos, empleadores y aseguradoras dejan de confiar en lo que emites.</div></div>
+          </div>
+          <div class="pi r r2">
+            <div class="pi__ico ico-a">📞</div>
+            <div><div class="pi__title">Las verificaciones saturan tu operación</div><div class="pi__desc">Llamadas para confirmar liquidaciones, correos pidiendo certificados, consultas de validez. Tu equipo gasta horas en tareas que no generan valor.</div></div>
+          </div>
+          <div class="pi r r3">
+            <div class="pi__ico ico-b">⚖️</div>
+            <div><div class="pi__title">La normativa ya cambió</div><div class="pi__desc">Ley de Protección de Datos, Ley Fintech, regulaciones sanitarias. El modelo de papel y PDF no cumple con los requisitos de portabilidad y consentimiento.</div></div>
+          </div>
+          <div class="pi r r4">
+            <div class="pi__ico ico-p">💸</div>
+            <div><div class="pi__title">Emites valor que otros monetizan sin pagarte</div><div class="pi__desc">Bancos, aseguradoras y empleadores consultan tus documentos miles de veces al año para tomar decisiones. Hoy lo hacen sin compensarte. Con Veris, cada validación genera un ingreso directo para tu organización.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="r r2">
+        <div class="prob-card">
+          <p class="prob-quote">"El problema no son los documentos.<br>Fueron diseñados para <mark>personas</mark>,<br>no para validación automática."</p>
+          <p class="prob-body">Veris no reemplaza tus sistemas. Transforma lo que ya emites en credenciales criptográficamente seguras — verificables al instante por cualquier institución, sin que el dato pase por tus manos una vez emitido.</p>
+          <div class="prob-data">
+            <div class="pd"><div class="pd__num pd__num--m">+80%</div><div class="pd__label">de solicitudes de crédito incluyen algún documento manipulado</div></div>
+            <div class="pd"><div class="pd__num">48h</div><div class="pd__label">tiempo promedio de verificación manual hoy</div></div>
+            <div class="pd"><div class="pd__num">$0</div><div class="pd__label">datos almacenados en infraestructura Veris</div></div>
+            <div class="pd"><div class="pd__num pd__num--m">&lt;2s</div><div class="pd__label">tiempo de validación con credencial Veris</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SECTORES ════ -->
+<section class="section sectors" id="sectores">
+  <div class="wrap">
+    <div class="sectors__header r">
+      <span class="sec-tag st--blue" style="display:block;text-align:center">Sectores</span>
+      <h2 class="big-title" style="text-align:center">Si emites un documento que alguien<br>necesita verificar, <em>Veris es para ti.</em></h2>
+      <p class="lead" style="margin:0 auto;text-align:center">No importa tu industria. Si generas datos sobre personas — laborales, clínicos, académicos o de identidad — Veris puede convertirlos en credenciales verificables en tiempo real.</p>
+    </div>
+    <div class="sec-grid">
+
+      <div class="sec-card r r1">
+        <div class="sec-card__bar bar--blue"></div>
+        <div class="sec-card__icon si--blue">💼</div>
+        <div class="sec-card__label scl--blue">Recursos humanos</div>
+        <h3>Plataformas de nómina y sistemas HCM</h3>
+        <p>Tus liquidaciones y certificados laborales son los documentos más solicitados del mundo financiero. Conviértelos en credenciales verificables y genera ingresos cada vez que un banco o aseguradora los valide.</p>
+        <div class="sec-card__docs">
+          <div class="sec-doc">Liquidaciones de sueldo verificables</div>
+          <div class="sec-doc">Certificados laborales con cargo y antigüedad</div>
+          <div class="sec-doc">Comprobantes de renta para trámites financieros</div>
+          <div class="sec-doc">Historial de cotizaciones previsionales</div>
+        </div>
+      </div>
+
+      <div class="sec-card r r2">
+        <div class="sec-card__bar bar--green"></div>
+        <div class="sec-card__icon si--green">🏥</div>
+        <div class="sec-card__label scl--green">Salud · Chile</div>
+        <h3>Clínicas, hospitales y laboratorios</h3>
+        <p>Las recetas falsificadas, los resultados manipulados y las licencias médicas fraudulentas son problemas reales de tu industria. Veris los elimina con firma criptográfica — y cumple el estándar <strong>HL7 FHIR</strong> para interoperabilidad clínica en Chile.</p>
+        <div class="sec-card__docs">
+          <div class="sec-doc">Recetas médicas verificables en farmacias</div>
+          <div class="sec-doc">Resultados de exámenes de laboratorio autenticados</div>
+          <div class="sec-doc">Licencias médicas para ISAPRE y empleadores</div>
+          <div class="sec-doc">Carnets de vacunación y protocolos de salud</div>
+          <div class="sec-doc">Informes clínicos y epicrisis verificables</div>
+        </div>
+        <div style="margin-top:1.1rem;padding:.65rem .9rem;background:var(--green-pale);border-radius:8px;border:1px solid rgba(29,158,117,.2)">
+          <div style="font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--green);margin-bottom:.3rem">Cumplimiento normativo salud</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+            <span style="font-size:.68rem;font-weight:600;padding:.18rem .55rem;background:rgba(29,158,117,.15);border-radius:100px;color:var(--green)">HL7 FHIR R4</span>
+            <span style="font-size:.68rem;font-weight:600;padding:.18rem .55rem;background:rgba(29,158,117,.15);border-radius:100px;color:var(--green)">MINSAL</span>
+            <span style="font-size:.68rem;font-weight:600;padding:.18rem .55rem;background:rgba(29,158,117,.15);border-radius:100px;color:var(--green)">Ley 21.096</span>
+            <span style="font-size:.68rem;font-weight:600;padding:.18rem .55rem;background:rgba(29,158,117,.15);border-radius:100px;color:var(--green)">Privacy by Design</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-card r r3">
+        <div class="sec-card__bar bar--violet"></div>
+        <div class="sec-card__icon si--violet">🎓</div>
+        <div class="sec-card__label scl--violet">Educación</div>
+        <h3>Universidades e instituciones educativas</h3>
+        <p>Los títulos falsos y los diplomas adulterados son un problema creciente para empleadores y entidades que confían en tu nombre. Emite credenciales académicas que cualquiera puede verificar en segundos, sin llamarte.</p>
+        <div class="sec-card__docs">
+          <div class="sec-doc">Títulos profesionales verificables</div>
+          <div class="sec-doc">Certificados de alumno regular y egreso</div>
+          <div class="sec-doc">Diplomas de postgrado y programas ejecutivos</div>
+          <div class="sec-doc">Constancias de acreditación institucional</div>
+        </div>
+      </div>
+
+      <div class="sec-card r r1">
+        <div class="sec-card__bar bar--magenta"></div>
+        <div class="sec-card__icon si--magenta">🛡️</div>
+        <div class="sec-card__label scl--magenta">Seguros</div>
+        <h3>Aseguradoras y corredoras de seguros</h3>
+        <p>Emite pólizas, coberturas y certificados de seguro como credenciales verificables. Reduce el fraude en la contratación y en los siniestros, y elimina la necesidad de validar documentos en papel.</p>
+        <div class="sec-card__docs">
+          <div class="sec-doc">Certificados de cobertura verificables</div>
+          <div class="sec-doc">Pólizas digitales con validez criptográfica</div>
+          <div class="sec-doc">Constancias de pago de prima</div>
+          <div class="sec-doc">Credenciales de beneficiarios para siniestros</div>
+        </div>
+      </div>
+
+      <div class="sec-card r r2">
+        <div class="sec-card__bar bar--teal"></div>
+        <div class="sec-card__icon si--teal">💊</div>
+        <div class="sec-card__label scl--teal">Salud previsional</div>
+        <h3>ISAPRES y Fonasa</h3>
+        <p>Las ISAPRES procesan miles de licencias médicas, bonos y documentos de cobertura al mes. Veris elimina el fraude en la tramitación de siniestros y acelera la validación de datos clínicos con evidencia criptográfica compatible con HL7 FHIR.</p>
+        <div class="sec-card__docs">
+          <div class="sec-doc">Licencias médicas verificables sin llamadas al empleador</div>
+          <div class="sec-doc">Certificados de cobertura y cargas familiares</div>
+          <div class="sec-doc">Credenciales de continuidad de cotizaciones</div>
+          <div class="sec-doc">Validación de renta para cálculo de subsidios</div>
+          <div class="sec-doc">Documentación de siniestros y reembolsos</div>
+        </div>
+        <div style="margin-top:1.1rem;padding:.65rem .9rem;background:var(--teal-pale);border-radius:8px;border:1px solid rgba(14,143,160,.2)">
+          <div style="font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--teal);margin-bottom:.3rem">Cumplimiento normativo</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+            <span style="font-size:.68rem;font-weight:600;padding:.18rem .55rem;background:rgba(14,143,160,.12);border-radius:100px;color:var(--teal)">HL7 FHIR R4</span>
+            <span style="font-size:.68rem;font-weight:600;padding:.18rem .55rem;background:rgba(14,143,160,.12);border-radius:100px;color:var(--teal)">MINSAL</span>
+            <span style="font-size:.68rem;font-weight:600;padding:.18rem .55rem;background:rgba(14,143,160,.12);border-radius:100px;color:var(--teal)">Ley 21.096</span>
+            <span style="font-size:.68rem;font-weight:600;padding:.18rem .55rem;background:rgba(14,143,160,.12);border-radius:100px;color:var(--teal)">Superintendencia de Salud</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-card r r3">
+        <div class="sec-card__bar bar--teal"></div>
+        <div class="sec-card__icon si--teal">🏢</div>
+        <div class="sec-card__label scl--teal">Empresas en general</div>
+        <h3>Cualquier organización que emita datos sobre personas</h3>
+        <p>Si tu empresa genera constancias, cartas, certificaciones o cualquier documento que una persona necesita presentar ante terceros, Veris puede convertirlo en una credencial verificable — sin importar tu industria.</p>
+        <div class="sec-card__docs">
+          <div class="sec-doc">Cartas de referencia laboral verificables</div>
+          <div class="sec-doc">Certificaciones de capacitación y cursos internos</div>
+          <div class="sec-doc">Constancias de experiencia profesional</div>
+          <div class="sec-doc">Acreditaciones de membresía o afiliación</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ CÓMO FUNCIONA ════ -->
+<section class="section how" id="como-funciona">
+  <div class="wrap">
+    <div class="how__grid">
+      <div class="r">
+        <span class="sec-tag st--blue">La solución</span>
+        <h2 class="big-title">Tu sistema emite.<br>Veris lo hace <em>verificable.</em></h2>
+        <p class="lead" style="max-width:420px">Veris no reemplaza tus procesos. Se conecta a tu arquitectura actual mediante API y transforma cada documento emitido en una credencial criptográficamente segura.</p>
+        <div class="steps-list">
+          <div class="step r r1">
+            <div class="step__num sn-1">1</div>
+            <div><h4>Tu sistema emite como siempre</h4><p>Liquidación, receta, título o constancia. El Veris Adapter recibe el dato sin modificar tu flujo operativo ni tu arquitectura core.</p></div>
+          </div>
+          <div class="step r r2">
+            <div class="step__num sn-2">2</div>
+            <div><h4>Veris firma criptográficamente</h4><p>El documento se convierte en una credencial con firma W3C Verifiable Credentials. Sin almacenar datos personales del titular. Zero Data Liability.</p></div>
+          </div>
+          <div class="step r r3">
+            <div class="step__num sn-3">3</div>
+            <div><h4>El usuario recibe en su Wallet</h4><p>La persona tiene su credencial en el app Veris. Decide con quién compartirla y cuándo. Consentimiento explícito en cada uso.</p></div>
+          </div>
+          <div class="step r r4">
+            <div class="step__num sn-4">4</div>
+            <div><h4>Cualquier institución verifica en segundos</h4><p>Banco, aseguradora, farmacia, empleador — consultan la validez contra la fuente original con una sola llamada API. Tú recibes el revenue share.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="r r2">
+        <div class="code-window">
+          <div class="code-bar">
+            <span class="code-dot cd1"></span><span class="code-dot cd2"></span><span class="code-dot cd3"></span>
+          </div>
+          <div class="code-body">
+<span class="cc">// Emitir una credencial verificable</span><br>
+<span class="ck">POST</span> <span class="cs">/v1/credentials/issue</span><br><br>
+{<br>
+&nbsp;&nbsp;<span class="cp">"type"</span>: <span class="cs">"LiquidacionSueldo"</span>,<br>
+&nbsp;&nbsp;<span class="cp">"issuer_id"</span>: <span class="cs">"did:veris:empresa-sa"</span>,<br>
+&nbsp;&nbsp;<span class="cp">"subject"</span>: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cp">"rut"</span>: <span class="cs">"12.345.678-9"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cp">"periodo"</span>: <span class="cs">"2024-12"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cp">"renta_liquida"</span>: <span class="cv">1850000</span><br>
+&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;<span class="cp">"consent"</span>: <span class="cv">true</span><br>
+}<br><br>
+<span class="cc">// Response — credencial firmada lista</span><br>
+<span class="cc">// para el Wallet del usuario</span><br>
+<span class="cc">// Tiempo total: &lt; 200ms</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ BENEFICIOS ════ -->
+<section class="section benefits" id="beneficios">
+  <div class="wrap">
+    <div class="benefits__header r">
+      <div>
+        <span class="sec-tag st--magenta">Beneficios para emisores</span>
+        <h2 class="big-title">No solo proteges tu marca.<br><em>También abres un nuevo negocio.</em></h2>
+      </div>
+      <p class="lead">Cada credencial que emites a través de Veris trabaja para ti: reduce el soporte operativo, protege tu reputación y genera ingresos cada vez que un tercero la valida.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card bc--g r r1" style="border:1.5px solid rgba(29,158,117,.25);background:var(--green-pale)">
+        <div class="benefit-icon" style="background:rgba(29,158,117,.18);font-size:1.1rem">🎁</div>
+        <div class="benefit-title" style="color:var(--green)">Gratis para ti. El verificador paga.</div>
+        <p class="benefit-desc">Integrar Veris y emitir credenciales no tiene ningún costo para tu organización. Es el banco, la aseguradora o la farmacia quien paga por acceder a datos verificados — y tú recibes el 25% de cada transacción.</p>
+        <div class="benefit-highlight" style="color:var(--green);background:rgba(29,158,117,.1);padding:.5rem .75rem;border-radius:8px;border:none;margin-top:.85rem">Tu costo: $0 &nbsp;·&nbsp; Tu ingreso: 25% por cada validación</div>
+      </div>
+      <div class="benefit-card bc--b r r2">
+        <div class="benefit-icon bi--b">🔒</div>
+        <div class="benefit-title">Protección de marca garantizada</div>
+        <p class="benefit-desc">Las credenciales son criptográficamente inmutables. El fraude documental que hoy usa tu nombre para engañar a terceros deja de ser posible — técnicamente.</p>
+        <div class="benefit-highlight bh--b">Firma W3C Verifiable Credentials estándar</div>
+      </div>
+      <div class="benefit-card bc--g r r3">
+        <div class="benefit-icon bi--g">⚙️</div>
+        <div class="benefit-title">Cero carga operativa adicional</div>
+        <p class="benefit-desc">Sin almacenamiento de datos personales. Sin responsabilidad sobre brechas. Sin llamadas de verificación. Tu equipo deja de ser parte del flujo de validación.</p>
+        <div class="benefit-highlight bh--g">Zero Data Liability por diseño</div>
+      </div>
+      <div class="benefit-card bc--b r r1">
+        <div class="benefit-icon bi--b">📊</div>
+        <div class="benefit-title">Control Center en tiempo real</div>
+        <p class="benefit-desc">Dashboard con métricas de credenciales emitidas, validaciones realizadas, revenue generado y auditoría completa de cada operación — listo para compliance regulatorio.</p>
+        <div class="benefit-highlight bh--b">Reportería lista para auditorías</div>
+      </div>
+      <div class="benefit-card bc--m r r2">
+        <div class="benefit-icon bi--m">✅</div>
+        <div class="benefit-title">Cumplimiento normativo automático</div>
+        <p class="benefit-desc">Portabilidad, consentimiento explícito y minimización de datos incorporados en el flujo. Cumples con la Ley de Protección de Datos y normativas sectoriales sin rediseñar tu arquitectura.</p>
+        <div class="benefit-highlight bh--m">Compatible con Ley 21.096, Ley Fintech y GDPR</div>
+      </div>
+      <div class="benefit-card bc--g r r3">
+        <div class="benefit-icon bi--g">🚀</div>
+        <div class="benefit-title">Diferenciación competitiva real</div>
+        <p class="benefit-desc">Ser el emisor de credenciales verificables en tu mercado no es un feature más — es posicionarte como la fuente de verdad de tu sector, antes que lo haga otro.</p>
+        <div class="benefit-highlight bh--g">Ventaja de primer movimiento en LATAM</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FHIR + SALUD SPOTLIGHT ════ -->
+<section style="background:var(--navy-deep);padding:clamp(4rem,8vw,6rem) 0;border-top:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 15% 50%,rgba(29,158,117,.1) 0%,transparent 60%),radial-gradient(ellipse 45% 40% at 85% 50%,rgba(68,114,196,.08) 0%,transparent 58%)"></div>
+  <div class="wrap r" style="position:relative;z-index:1">
+
+    <!-- Header -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:3rem">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(29,158,117,.14);border:1px solid rgba(29,158,117,.28);color:rgba(80,200,140,.9);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.32rem .9rem;border-radius:100px;margin-bottom:1rem">
+          <span style="width:5px;height:5px;background:rgba(80,200,140,.9);border-radius:50%;animation:bdot 2.2s ease-in-out infinite;display:inline-block"></span>
+          Sector salud · Cumplimiento normativo
+        </div>
+        <h2 class="big-title big-title--white">Cumplimiento <em>FHIR</em> y Ley de<br>Protección de Datos incluidos.</h2>
+        <p class="lead lead--white">Para organizaciones de salud en Chile, Veris no es solo infraestructura de confianza digital — es también la forma más directa de cumplir con los lineamientos de interoperabilidad clínica del MINSAL y la normativa de protección de datos personales sensibles.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:1.75rem">
+        <div style="font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:1.25rem">Estándares de salud digital cubiertos</div>
+        <div style="display:flex;flex-direction:column;gap:.7rem">
+          <div style="display:flex;align-items:flex-start;gap:.85rem;padding:.85rem 1rem;background:rgba(29,158,117,.08);border:1px solid rgba(29,158,117,.18);border-radius:10px">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(29,158,117,.2);border:1px solid rgba(29,158,117,.3);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0">🔗</div>
+            <div>
+              <div style="font-size:.82rem;font-weight:700;color:#5DD4A8;margin-bottom:.2rem">HL7 FHIR R4 — Interoperabilidad clínica</div>
+              <div style="font-size:.74rem;color:rgba(255,255,255,.4);line-height:1.5">Las credenciales clínicas de Veris son compatibles con el estándar FHIR que el MINSAL exige para la interoperabilidad de sistemas de salud en Chile. Tus datos clínicos viajan en formatos que cualquier sistema puede leer y verificar.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.85rem;padding:.85rem 1rem;background:rgba(68,114,196,.06);border:1px solid rgba(68,114,196,.16);border-radius:10px">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(68,114,196,.18);border:1px solid rgba(68,114,196,.28);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0">🛡️</div>
+            <div>
+              <div style="font-size:.82rem;font-weight:700;color:#90B8F0;margin-bottom:.2rem">Ley 21.096 — Datos personales sensibles</div>
+              <div style="font-size:.74rem;color:rgba(255,255,255,.4);line-height:1.5">Los datos clínicos son datos sensibles por ley. Veris garantiza que jamás se almacenan en servidores de terceros — viven en el dispositivo del paciente. Consentimiento explícito en cada acceso. Cumplimiento desde el diseño.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.85rem;padding:.85rem 1rem;background:rgba(108,74,176,.06);border:1px solid rgba(108,74,176,.16);border-radius:10px">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(108,74,176,.18);border:1px solid rgba(108,74,176,.28);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0">📋</div>
+            <div>
+              <div style="font-size:.82rem;font-weight:700;color:#C0A8F0;margin-bottom:.2rem">Normativa MINSAL — Historia clínica digital</div>
+              <div style="font-size:.74rem;color:rgba(255,255,255,.4);line-height:1.5">Compatible con los lineamientos del Ministerio de Salud para historia clínica electrónica, receta médica digital y portabilidad de datos del paciente entre prestadores.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pills de cumplimiento -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem">
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.1rem 1.2rem;text-align:center;transition:border-color .2s" onmouseover="this.style.borderColor='rgba(29,158,117,.35)'" onmouseout="this.style.borderColor='rgba(255,255,255,.08)'">
+        <div style="font-size:1.4rem;margin-bottom:.6rem">🔗</div>
+        <div style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:#5DD4A8;margin-bottom:.3rem">HL7 FHIR R4</div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.35);line-height:1.5">Interoperabilidad clínica estándar para sistemas de salud</div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.1rem 1.2rem;text-align:center;transition:border-color .2s" onmouseover="this.style.borderColor='rgba(68,114,196,.35)'" onmouseout="this.style.borderColor='rgba(255,255,255,.08)'">
+        <div style="font-size:1.4rem;margin-bottom:.6rem">🏛️</div>
+        <div style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:#90B8F0;margin-bottom:.3rem">MINSAL</div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.35);line-height:1.5">Alineado con lineamientos de digitalización del Ministerio de Salud</div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.1rem 1.2rem;text-align:center;transition:border-color .2s" onmouseover="this.style.borderColor='rgba(192,56,138,.35)'" onmouseout="this.style.borderColor='rgba(255,255,255,.08)'">
+        <div style="font-size:1.4rem;margin-bottom:.6rem">🔒</div>
+        <div style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:#E880C0;margin-bottom:.3rem">Ley 21.096</div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.35);line-height:1.5">Datos sensibles de salud protegidos por ley — consentimiento explícito en cada uso</div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.1rem 1.2rem;text-align:center;transition:border-color .2s" onmouseover="this.style.borderColor='rgba(212,135,10,.35)'" onmouseout="this.style.borderColor='rgba(255,255,255,.08)'">
+        <div style="font-size:1.4rem;margin-bottom:.6rem">🏥</div>
+        <div style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:#FAC775;margin-bottom:.3rem">Receta digital</div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.35);line-height:1.5">Marco normativo para prescripción médica electrónica verificable en farmacias</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ SEGURIDAD ════ -->
+<section class="section security" id="seguridad">
+  <div class="wrap security__inner">
+    <div class="security__grid">
+      <div class="r">
+        <span class="sec-tag st--pale">Seguridad y compliance</span>
+        <h2 class="big-title big-title--white">Construida para equipos que <em>no pueden equivocarse.</em></h2>
+        <p class="lead lead--white">Cada decisión de arquitectura fue tomada pensando en los equipos de seguridad, compliance y tecnología que deben aprobar la integración antes de que nadie más lo vea.</p>
+        <div class="security__pillars">
+          <div class="pillar">
+            <div class="pillar__ico">🔐</div>
+            <div class="pillar__name">Zero Trust</div>
+            <p class="pillar__desc">Ninguna entidad se asume confiable por defecto. Cada operación — emisión, entrega, validación — requiere autenticación y autorización independiente. Sin excepciones.</p>
+            <span class="pillar__badge pb--blue">Arquitectura</span>
+          </div>
+          <div class="pillar">
+            <div class="pillar__ico">🛡️</div>
+            <div class="pillar__name">Privacy by Design</div>
+            <p class="pillar__desc">La privacidad no es un módulo adicional — está en el núcleo de la arquitectura. Cumplimiento automático con Ley 21.096 sin configuración extra.</p>
+            <span class="pillar__badge pb--green">Ley 21.096</span>
+          </div>
+          <div class="pillar">
+            <div class="pillar__ico">🗂️</div>
+            <div class="pillar__name">Zero Data Liability</div>
+            <p class="pillar__desc">Veris no almacena datos personales ni clínicos en ningún servidor. El dato vive en el dispositivo del titular. Tu organización no acumula responsabilidad por brechas.</p>
+            <span class="pillar__badge pb--magenta">Sin exposición</span>
+          </div>
+          <div class="pillar">
+            <div class="pillar__ico">📋</div>
+            <div class="pillar__name">Consentimiento explícito</div>
+            <p class="pillar__desc">Cada validación exige autorización activa del titular en ese momento. Registro inmutable de accesos para auditorías regulatorias y de salud.</p>
+            <span class="pillar__badge pb--amber">Auditoría</span>
+          </div>
+          <div class="pillar">
+            <div class="pillar__ico">🔑</div>
+            <div class="pillar__name">Cifrado end-to-end</div>
+            <p class="pillar__desc">Las credenciales viajan cifradas en todo momento. Ni Veris ni ningún intermediario puede leer el contenido sin autorización del titular.</p>
+            <span class="pillar__badge pb--blue">Seguridad</span>
+          </div>
+          <div class="pillar">
+            <div class="pillar__ico">📡</div>
+            <div class="pillar__name">Trazabilidad total</div>
+            <p class="pillar__desc">Log de auditoría completo e inmutable de cada emisión, entrega y validación. Disponible en tiempo real desde el Control Center para cumplimiento regulatorio.</p>
+            <span class="pillar__badge pb--green">Control</span>
+          </div>
+        </div>
+      </div>
+      <div class="r r2">
+        <div class="compliance-box">
+          <div class="compliance-box__title">Estándares y normativas cubiertas</div>
+          <div class="ci-list">
+            <div class="ci" style="background:rgba(29,158,117,.08);border-color:rgba(29,158,117,.2)">
+              <div class="ci__chk" style="background:rgba(29,158,117,.2);border-color:rgba(29,158,117,.4)">✓</div>
+              <span class="ci__text" style="color:rgba(255,255,255,.75);font-weight:500">HL7 FHIR R4 — Interoperabilidad clínica</span>
+              <span class="ci__badge" style="color:rgba(80,200,140,.9)">Salud · Chile</span>
+            </div>
+            <div class="ci" style="background:rgba(29,158,117,.06);border-color:rgba(29,158,117,.15)">
+              <div class="ci__chk">✓</div>
+              <span class="ci__text">MINSAL — Lineamientos historia clínica digital</span>
+              <span class="ci__badge" style="color:rgba(80,200,140,.8)">Salud</span>
+            </div>
+            <div class="ci">
+              <div class="ci__chk">✓</div>
+              <span class="ci__text">Ley 21.096 — Protección de Datos Personales</span>
+              <span class="ci__badge">Chile</span>
+            </div>
+            <div class="ci">
+              <div class="ci__chk">✓</div>
+              <span class="ci__text">W3C Verifiable Credentials</span>
+              <span class="ci__badge">Internacional</span>
+            </div>
+            <div class="ci">
+              <div class="ci__chk">✓</div>
+              <span class="ci__text">OpenID Connect</span>
+              <span class="ci__badge">Identidad</span>
+            </div>
+            <div class="ci">
+              <div class="ci__chk">✓</div>
+              <span class="ci__text">Ley Fintech</span>
+              <span class="ci__badge">Financiero</span>
+            </div>
+            <div class="ci">
+              <div class="ci__chk">✓</div>
+              <span class="ci__text">ISO 27001 aligned</span>
+              <span class="ci__badge">Seguridad</span>
+            </div>
+            <div class="ci">
+              <div class="ci__chk">✓</div>
+              <span class="ci__text">SOC 2 Type II (en proceso)</span>
+              <span class="ci__badge">Auditoría</span>
+            </div>
+          </div>
+        </div>
+        <div class="integration-box">
+          <div class="compliance-box__title" style="font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:.6rem">Integración técnica</div>
+          <p>API REST + Webhooks estándar. Sin acceso a tus sistemas internos. Sin migración de datos. Entorno Sandbox incluido desde el día 1.</p>
+          <a href="#demo">Iniciar piloto — 2 a 5 días de integración →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CTA ════ -->
+<section class="cta-s" id="demo">
+  <div class="cta-s__orb"></div>
+  <div class="cta-s__inner r">
+    <div class="cta-eyebrow"><span style="width:5px;height:5px;background:rgba(192,56,138,.85);border-radius:50%;display:inline-block"></span>100% gratuito para emisores</div>
+    <h2>Empieza hoy. <em>Sin costo,<br>con ingresos desde el primer día.</em></h2>
+    <p>Integrar Veris no tiene costo para tu organización — ni en el piloto, ni después. El modelo se financia porque quienes verifican tus datos pagan por hacerlo. Tú integras, emites y cobras el 25% de cada validación.</p>
+    <div style="background:rgba(29,158,117,.12);border:1px solid rgba(29,158,117,.25);border-radius:12px;padding:1rem 1.5rem;margin-bottom:2rem;display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap">
+      <div style="text-align:center"><div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:#5DD4A8">$0</div><div style="font-size:.65rem;color:rgba(255,255,255,.45);letter-spacing:.06em;text-transform:uppercase;margin-top:.2rem">Tu costo total</div></div>
+      <div style="font-size:1.5rem;color:rgba(255,255,255,.15)">+</div>
+      <div style="text-align:center"><div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--magenta-s)">25%</div><div style="font-size:.65rem;color:rgba(255,255,255,.45);letter-spacing:.06em;text-transform:uppercase;margin-top:.2rem">Revenue por validación</div></div>
+      <div style="font-size:1.5rem;color:rgba(255,255,255,.15)">=</div>
+      <div style="text-align:center"><div style="font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;color:#fff">Nuevo ingreso<br>sin inversión</div></div>
+    </div>
+    <div class="cta-s__btns">
+      <a href="mailto:hola@veris.cl" class="btn-main" style="font-size:1rem;padding:.9rem 2rem">Agendar una demo →</a>
+      <a href="#como-funciona" class="btn-ghost" style="font-size:1rem;padding:.9rem 2rem">Ver documentación técnica</a>
+    </div>
+    <div class="cta-s__reassure">
+      <span>Gratis para emisores</span>
+      <span>El verificador paga — tú cobras</span>
+      <span>Sin cambios en tu arquitectura</span>
+      <span>Piloto de 30 días incluido</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">Veris · Digital Trust Infrastructure</div>
+    <nav class="footer__links">
+      <a href="veris_home.html">Inicio</a>
+      <a href="verificadores.html">Verificadores</a>
+      <a href="usuarios.html">Usuarios</a>
+      <a href="#">Documentación</a>
+      <a href="#">Privacidad</a>
+      <a href="mailto:hola@veris.cl">Contacto</a>
+    </nav>
+    <div class="footer__copy">© 2025 Veris · veris.cl</div>
+  </div>
+</footer>
+
+<script>
+function switchDoc(idx, el){
+  document.querySelectorAll('.emit-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.doc-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
+}
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:0.07,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.r').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

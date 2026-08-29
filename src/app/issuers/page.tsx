@@ -26,7 +26,7 @@ html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:#F5F8FF;color:var(--text-body);line-height:1.6;overflow-x:hidden}
 
 /* HERO */
-.hero{min-height:100vh;background:var(--navy);position:relative;display:flex;align-items:center;overflow:hidden;padding-top:62px}
+.hero{min-height:100vh;background:var(--navy);position:relative;display:flex;align-items:center;overflow:hidden;padding-top:100px}
 .hero-bg{position:absolute;inset:0;overflow:hidden}
 .hero-orb1{position:absolute;top:-15%;right:-8%;width:680px;height:680px;background:radial-gradient(circle at 40% 40%, rgba(192,56,138,.25) 0%, rgba(68,114,196,.12) 50%, transparent 70%);border-radius:50%}
 .hero-orb2{position:absolute;bottom:-20%;left:-10%;width:520px;height:520px;background:radial-gradient(circle at 60% 60%, rgba(68,114,196,.2) 0%, transparent 65%);border-radius:50%}
@@ -74,6 +74,7 @@ body{font-family:'DM Sans',sans-serif;background:#F5F8FF;color:var(--text-body);
 .section-inner{max-width:1140px;margin:0 auto}
 .section-tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--magenta);margin-bottom:.75rem}
 .section-title{font-family:'DM Serif Display',serif;font-size:2.4rem;line-height:1.15;color:var(--navy);font-weight:400;margin-bottom:1rem;letter-spacing:-.02em}
+.section-title em{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;color:var(--magenta)}
 .section-sub{font-size:1.05rem;color:var(--text-muted);max-width:560px;line-height:1.7;font-weight:300}
 
 /* PROBLEM */
@@ -330,7 +331,8 @@ export default function IssuersPage() {
             <div className="problem-content fade-in">
               <div className="section-tag">El problema</div>
               <h2 className="section-title">
-                Los documentos ya no son suficientes para un mundo digital. Cualquiera los puede <em>falsificar</em>.
+                Los documentos ya no son suficientes para un mundo digital. Cualquiera los puede 
+                <em>falsificar</em>.
               </h2>
               <p className="section-sub">
                 Tu organización invierte tiempo y recursos en generar documentos que son la base de decisiones críticas para tus usuarios. 
@@ -413,7 +415,7 @@ export default function IssuersPage() {
           >
             <div className="section-tag">La solución</div>
             <h2 className="section-title">
-              Tu sistema emite. Veris lo hace verificable.
+              Tu sistema emite. Veris lo hace <em>verificable.</em>
             </h2>
             <p className="section-sub" style={{ margin: "0 auto" }}>
               Veris no reemplaza tus procesos. Se conecta a tu arquitectura actual mediante APIs / Webhooks y 
@@ -463,7 +465,9 @@ export default function IssuersPage() {
             <div>
               <div className="section-tag">Beneficios para emisores</div>
               <h2 className="section-title">
-                No solo proteges tu marca.<br><em>También abres un nuevo negocio.</em>
+                No solo proteges tu marca.
+                <br />
+                <em style={{ color: '#E880C0' }}>También abres un nuevo negocio.</em>
               </h2>
             </div>
             <p className="section-sub">
@@ -532,6 +536,8 @@ export default function IssuersPage() {
           </div>
         </div>
       </section>
+
+      
 
       {/* SEGURIDAD */}
       <section className="section security-section" id="seguridad">

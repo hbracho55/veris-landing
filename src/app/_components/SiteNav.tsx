@@ -39,6 +39,7 @@ export default function SiteNav() {
           {/* Desktop links */}
           <div className="nav-links">
             <Link href="/">Inicio</Link>
+            <Link href="/#sectores">Industrias</Link>
             <Link href="/#ecosistema">Ecosistema</Link>
             <Link href="/#seguridad">Seguridad</Link>
             <Link href="/#casos">Casos de uso</Link>
@@ -65,6 +66,7 @@ export default function SiteNav() {
           <Link href="/" onClick={handleLinkClick}>Inicio</Link>
           <Link href="/#ecosistema" onClick={handleLinkClick}>Ecosistema</Link>
           <Link href="/#seguridad" onClick={handleLinkClick}>Seguridad</Link>
+          <Link href="/#sectores" onClick={handleLinkClick}>Industrias</Link>
           <Link href="/#casos" onClick={handleLinkClick}>Casos de uso</Link>
           <DemoTrigger className="nav-drawer-pill" onClick={handleLinkClick}>
             Agendar demo

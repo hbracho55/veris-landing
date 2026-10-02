@@ -259,7 +259,7 @@ body{font-family:'DM Sans',sans-serif;background:#F5F8FF;color:var(--text);line-
 .sec-card__docs{display:flex;flex-direction:column;gap:.38rem}
 .sec-doc{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--faint)}
 .sec-doc::before{content:'→';font-size:.68rem;flex-shrink:0}
-.sec-card-cta{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:700;padding:.65rem 1.2rem;border-radius:10px;transition:all .25s;text-decoration:none;font-family:'DM Sans',sans-serif;letter-spacing:.02em;margin-top:1.25rem;cursor:default}
+.sec-card-cta{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:700;padding:.65rem 1.2rem;border-radius:10px;transition:all .25s;text-decoration:none;font-family:'DM Sans',sans-serif;letter-spacing:.02em;margin-top:1.25rem;cursor:pointer}
 .sec-card-cta--blue{background:rgba(68,114,196,.1);color:var(--blue);border:1px solid rgba(68,114,196,.3)}
 .sec-card-cta--blue:hover{background:linear-gradient(135deg,rgba(68,114,196,.8),rgba(68,114,196,.6));color:#fff;border-color:#4472C4;box-shadow:0 4px 20px rgba(68,114,196,.35);transform:translateY(-1px)}
 .sec-card-cta--green{background:rgba(29,158,117,.1);color:var(--green);border:1px solid rgba(29,158,117,.3)}
@@ -653,7 +653,7 @@ export default function Home() {
                 <div className="sec-doc">Constancias de pago de prima</div>
                 <div className="sec-doc">Credenciales de beneficiarios para siniestros</div>
               </div>
-              <span className="sec-card-cta sec-card-cta--magenta">Ver solución para Seguros →</span>
+              <Link href="/insurance" className="sec-card-cta sec-card-cta--magenta">Ver solución para Seguros →</Link>
             </div>
 
             <div className="sec-card reveal reveal-delay-2">

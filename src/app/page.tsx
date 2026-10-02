@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import DemoTrigger from "./_components/DemoTrigger";
 import LiveVerify from "./_components/LiveVerify";
+import VideoFacade from "./_components/VideoFacade";
 
 const pageStyles = `
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
@@ -400,13 +401,7 @@ export default function Home() {
           </div>
           <div className="hero-right">
             <div style={{position:'relative',width:'100%',paddingBottom:'56.25%',borderRadius:'16px',overflow:'hidden',boxShadow:'0 8px 32px rgba(0,0,0,0.3)',transform:'scale(1.12)',transformOrigin:'center center'}}>
-              <iframe
-                src="https://www.youtube.com/embed/1b3VEPeidkk"
-                title="Veris"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                style={{position:'absolute',top:0,left:0,width:'100%',height:'100%',border:'none'}}
-              />
+              <VideoFacade videoId="1b3VEPeidkk" titulo="Veris — cómo funciona" />
             </div>
           </div>
         </div>

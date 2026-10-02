@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import DemoTrigger from "./_components/DemoTrigger";
+import LiveVerify from "./_components/LiveVerify";
 
 const pageStyles = `
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
@@ -49,6 +50,9 @@ body{font-family:'DM Sans',sans-serif;background:#F5F8FF;color:var(--text);line-
 .hero-sub strong{color:rgba(255,255,255,.85);font-weight:500}
 .hero-ctas{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
 .btn-primary{background:var(--magenta);color:#fff;padding:.8rem 1.75rem;border-radius:8px;font-size:.95rem;font-weight:500;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;border:2px solid transparent;font-family:'DM Sans',sans-serif}
+.btn-secondary{background:transparent;color:#fff;padding:.8rem 1.6rem;border-radius:8px;font-size:.95rem;font-weight:500;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(255,255,255,.35);font-family:'DM Sans',sans-serif;cursor:pointer}
+.btn-secondary:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.65)}
+.btn-secondary:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .btn-primary:hover{background:#A8307A;transform:translateY(-2px);box-shadow:0 8px 24px rgba(192,56,138,.35)}
 .btn-outline{background:transparent;color:rgba(255,255,255,.8);padding:.8rem 1.5rem;border-radius:8px;font-size:.92rem;font-weight:400;text-decoration:none;transition:all .2s;border:1px solid rgba(255,255,255,.2);display:inline-flex;align-items:center;gap:.5rem;font-family:'DM Sans',sans-serif}
 .btn-outline:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.4);color:#fff}
@@ -382,6 +386,9 @@ export default function Home() {
             </p>
             <div className="hero-ctas">
               <DemoTrigger className="btn-primary">Agendar una demo →</DemoTrigger>
+              {/* Segunda vía, de compromiso cero: ver la verificación funcionando
+                  antes de tener que hablar con alguien. */}
+              <a href="#verificar" className="btn-secondary">Verificar una credencial ahora</a>
             </div>
             <div className="hero-proof">
               <div className="proof-item"><strong>&lt; 2s</strong>tiempo de verificación</div>
@@ -562,6 +569,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* VERIFICACIÓN EN VIVO — después de explicar cómo funciona, para que el
+          visitante pueda comprobarlo sin instalar nada ni hablar con nadie. */}
+      <LiveVerify />
 
       {/* SECTORES */}
       <section className="section sectors" id="sectores">

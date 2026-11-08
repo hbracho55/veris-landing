@@ -43,6 +43,7 @@ export default function SiteNav() {
             <Link href="/#ecosistema">Ecosistema</Link>
             <Link href="/#seguridad">Seguridad</Link>
             <Link href="/#casos">Casos de uso</Link>
+            <Link href="/docs">Documentación</Link>
             <DemoTrigger className="nav-pill">Agendar demo</DemoTrigger>
           </div>
 
@@ -68,6 +69,7 @@ export default function SiteNav() {
           <Link href="/#ecosistema" onClick={handleLinkClick}>Ecosistema</Link>
           <Link href="/#seguridad" onClick={handleLinkClick}>Seguridad</Link>
           <Link href="/#casos" onClick={handleLinkClick}>Casos de uso</Link>
+          <Link href="/docs" onClick={handleLinkClick}>Documentación</Link>
           <DemoTrigger className="nav-drawer-pill" onClick={handleLinkClick}>
             Agendar demo
           </DemoTrigger>

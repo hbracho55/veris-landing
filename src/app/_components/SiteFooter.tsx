@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DemoTrigger from "./DemoTrigger";
 
 export default function SiteFooter() {
   return (
@@ -15,12 +16,11 @@ export default function SiteFooter() {
         <div className="footer-links">
           <Link href="/issuers">Emisores</Link>
           <Link href="/verifiers">Verificadores</Link>
-          <a href="#">Usuarios</a>
-          <a href="#">Documentación</a>
-          <a href="#">Privacidad</a>
-          <a href="#">Contacto</a>
+          <Link href="/users">Usuarios</Link>
+          <Link href="/docs">Documentación</Link>
+          <DemoTrigger className="footer-contact">Contacto</DemoTrigger>
         </div>
-        <div className="footer-copy">© 2026 Veris Protocol - Infrastructura Digital de Confianza.</div>
+        <div className="footer-copy">© 2026 Veris Protocol - Infraestructura Digital de Confianza.</div>
       </div>
     </footer>
   );

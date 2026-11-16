@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import DemoTrigger from "../_components/DemoTrigger";
 
@@ -30,7 +31,7 @@ const pageStyles = `
   --border:#D0DCF0;
 }
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:#F5F8FF;color:var(--text);line-height:1.6;overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;background:#F5F8FF;color:var(--text);line-height:1.6;overflow-x:clip}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px}
 a{text-decoration:none}
@@ -45,7 +46,7 @@ a{text-decoration:none}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:64px 64px}
 .hero-glow{position:absolute;top:10%;right:5%;width:500px;height:500px;background:radial-gradient(circle,rgba(68,114,196,.15) 0%,transparent 65%);border-radius:50%;animation:gpulse 5s ease-in-out infinite}
 @keyframes gpulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.08);opacity:.5}}
-.hero-inner{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:5rem clamp(1.25rem,4vw,3rem);display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:calc(1160px + 2 * clamp(1.25rem,4vw,3rem));margin:0 auto;padding:5rem clamp(1.25rem,4vw,3rem);display:grid;grid-template-columns:minmax(0,580px);align-items:center}
 .hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(68,114,196,.15);border:1px solid rgba(68,114,196,.3);color:rgba(140,180,240,.9);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .9rem;border-radius:100px;margin-bottom:1.5rem}
 .hero-tag::before{content:'';width:5px;height:5px;background:rgba(140,180,240,.9);border-radius:50%;animation:bdot 2.2s ease-in-out infinite}
 @keyframes bdot{0%,100%{opacity:1}50%{opacity:.2}}
@@ -58,33 +59,18 @@ a{text-decoration:none}
 .btn-primary:hover{background:#3360B0;transform:translateY(-2px);box-shadow:0 10px 28px rgba(68,114,196,.4)}
 .btn-outline{background:transparent;color:rgba(255,255,255,.75);padding:.85rem 1.5rem;border-radius:8px;font-size:.92rem;font-weight:400;text-decoration:none;transition:all .2s;border:1px solid rgba(255,255,255,.2);display:inline-flex;align-items:center;gap:.5rem;font-family:'DM Sans',sans-serif}
 .btn-outline:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.4);color:#fff}
-.hero-proof{display:flex;flex-wrap:wrap;gap:1.5rem}
+.hero-proof{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem}
 .proof-item{font-size:.75rem;color:rgba(255,255,255,.35);letter-spacing:.06em;text-transform:uppercase}
 .proof-item strong{color:rgba(255,255,255,.7);font-weight:600;display:block;font-size:1.1rem;letter-spacing:0;text-transform:none}
-.proof-divider{width:1px;height:24px;background:rgba(255,255,255,.12);align-self:center}
+.proof-divider{width:1px;height:14px;background:rgba(255,255,255,.12);align-self:center}
 
-/* Hero card */
-.hero-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;backdrop-filter:blur(8px)}
-.hero-card-top{padding:1.4rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.07)}
-.hero-card-label{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1.25rem}
-.flow-step{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.1rem}
-.flow-step:last-child{margin-bottom:0}
-.flow-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem}
-.fi-1{background:rgba(68,114,196,.2);border:1px solid rgba(68,114,196,.35)}
-.fi-2{background:rgba(192,56,138,.18);border:1px solid rgba(192,56,138,.3)}
-.fi-3{background:rgba(29,158,117,.18);border:1px solid rgba(29,158,117,.3)}
-.fi-4{background:rgba(68,114,196,.2);border:1px solid rgba(68,114,196,.35)}
-.fi-5{background:rgba(180,140,40,.18);border:1px solid rgba(180,140,40,.3)}
-.flow-title{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.88);line-height:1.2}
-.flow-sub{font-size:.72rem;color:rgba(255,255,255,.38);margin-top:.15rem}
-.flow-arrow{text-align:center;color:rgba(255,255,255,.2);font-size:.75rem;margin:-.15rem 0 -.15rem 1.2rem}
-.flow-check{width:18px;height:18px;border-radius:50%;background:rgba(29,158,117,.2);border:1px solid rgba(29,158,117,.4);display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#5DD4A8;flex-shrink:0;align-self:center}
-.hero-card-stats{display:grid;grid-template-columns:1fr 1fr 1fr;padding:1.25rem 1.75rem}
-.stat-col{text-align:center;padding:.5rem 0}
-.stat-col+.stat-col{border-left:1px solid rgba(255,255,255,.07)}
-.stat-val{font-family:'DM Serif Display',serif;font-size:1.6rem;color:#fff;line-height:1}
-.stat-val.blue{color:#90B8F0}
-.stat-lab{font-size:.62rem;color:rgba(255,255,255,.35);letter-spacing:.06em;text-transform:uppercase;margin-top:.3rem}
+/* Hero image */
+.hero{--hm:max((100% - 1160px) / 2, clamp(1.25rem,4vw,3rem))}
+.hero-photo{position:absolute;z-index:1;pointer-events:none;right:var(--hm);top:50%;transform:translateY(-50%);width:min(1400px,calc((100% - 2 * var(--hm) - 600px) * 2));aspect-ratio:16/9}
+.hero-photo img{object-fit:cover;object-position:right center}
+.hero-photo{-webkit-mask-image:radial-gradient(ellipse 11% 13% at 42% 79%,transparent 0,transparent 62%,#000 100%),linear-gradient(90deg,transparent 0,transparent 33%,#000 52%,#000 95%,transparent 100%),linear-gradient(180deg,transparent 0,#000 16%,#000 84%,transparent 100%);-webkit-mask-composite:source-in,source-in;mask-image:radial-gradient(ellipse 11% 13% at 42% 79%,transparent 0,transparent 62%,#000 100%),linear-gradient(90deg,transparent 0,transparent 33%,#000 52%,#000 95%,transparent 100%),linear-gradient(180deg,transparent 0,#000 16%,#000 84%,transparent 100%);mask-composite:intersect,intersect}
+.hero-photo::after{content:'';position:absolute;inset:0;background:none}
+
 
 /* PROOF STRIP */
 .proof-strip{background:var(--navy-mid);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:1.1rem clamp(1.25rem,4vw,3rem)}
@@ -106,13 +92,10 @@ a{text-decoration:none}
 /* PROBLEM */
 .problem{background:#fff}
 .prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center}
-.prob-items{display:flex;flex-direction:column;gap:.9rem;margin-top:2rem}
-.prob-item{display:flex;gap:1rem;padding:1.1rem 1.25rem;border:1px solid var(--border);border-radius:12px;background:#fff;transition:border-color .2s,box-shadow .2s}
+.prob-items{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:2rem}
+.prob-item{border:1px solid #cdd5dd;border-radius:14px;background:#fff;overflow:hidden;box-shadow:0 1px 3px rgba(20,39,67,.08),0 8px 22px rgba(20,39,67,.07);transition:border-color .2s,box-shadow .2s}
+.prob-item img{display:block;width:100%;height:auto}
 .prob-item:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(68,114,196,.08)}
-.pi-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.95rem}
-.pi-r{background:#FEE8E8}.pi-a{background:#FEF4E0}.pi-b{background:var(--blue-pale)}.pi-p{background:#F0EEFE}.pi-g{background:var(--green-pale)}.pi-m{background:var(--magenta-pale)}
-.pi-title{font-size:.875rem;font-weight:600;color:var(--navy);margin-bottom:.2rem}
-.pi-desc{font-size:.78rem;color:var(--muted);line-height:1.55}
 .prob-card{background:var(--ice);border:1px solid var(--border);border-radius:16px;padding:1.75rem;overflow:hidden;position:relative}
 .prob-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-soft))}
 .prob-quote{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--navy);line-height:1.55;font-style:italic;margin-bottom:1.25rem}
@@ -126,14 +109,10 @@ a{text-decoration:none}
 /* SOLUTION */
 .solution{background:var(--ice)}
 .sol-header{text-align:center;max-width:680px;margin:0 auto 3.5rem}
-.sol-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1.25rem;position:relative}
-.sol-steps::before{content:'';position:absolute;top:28px;left:calc(10% + 16px);right:calc(10% + 16px);height:1px;background:linear-gradient(90deg,var(--blue),var(--blue-soft),var(--green));opacity:.3}
-.sol-step{text-align:center;padding:1.5rem 1rem;background:#fff;border:1px solid var(--border);border-radius:14px;position:relative;z-index:1;transition:transform .2s,box-shadow .2s}
-.sol-step:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(30,53,100,.1)}
-.step-num{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:800;color:#fff}
-.sn-1{background:var(--blue)}.sn-2{background:var(--magenta)}.sn-3{background:var(--navy)}.sn-4{background:var(--green)}.sn-5{background:#7C5CBF}
-.sol-step h3{font-family:'DM Serif Display',serif;font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
-.sol-step p{font-size:.78rem;color:var(--muted);line-height:1.6}
+.sol-flow{margin:0;mix-blend-mode:multiply}
+.sol-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem}
+.sol-steps li{margin:0}
+.sol-steps img{display:block;width:100%;height:auto;aspect-ratio:462/1110;object-fit:cover}
 
 /* BENEFITS */
 .benefits{background:#fff}
@@ -155,12 +134,9 @@ a{text-decoration:none}
 .usecases{background:var(--ice)}
 .uc-header{text-align:center;max-width:620px;margin:0 auto 3rem}
 .uc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
-.uc-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:all .2s}
+.uc-card{background:#fff;border:1px solid #cdd5dd;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(20,39,67,.08),0 8px 22px rgba(20,39,67,.07);transition:all .2s}
+.uc-card img{display:block;width:100%;height:auto}
 .uc-card:hover{border-color:var(--blue);box-shadow:0 6px 20px rgba(68,114,196,.09);transform:translateY(-2px)}
-.uc-icon{font-size:1.5rem;margin-bottom:.75rem}
-.uc-card h3{font-size:.9rem;font-weight:600;color:var(--navy);margin-bottom:.5rem}
-.uc-card p{font-size:.78rem;color:var(--muted);line-height:1.6}
-.uc-tag{display:inline-block;margin-top:.85rem;font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.22rem .6rem;border-radius:100px;background:var(--blue-pale);color:var(--blue)}
 
 /* SECURITY */
 .security{background:var(--navy-deep);position:relative;overflow:hidden}
@@ -226,16 +202,22 @@ a{text-decoration:none}
 
 @media(max-width:900px){
   .hero-inner,.prob-grid,.sec-grid,.benefits-header{grid-template-columns:1fr}
-  .hero-right{display:none}
-  .sol-steps{grid-template-columns:1fr 1fr}
-  .sol-steps::before{display:none}
+  .hero-photo{inset:0;top:0;transform:none;width:auto;aspect-ratio:auto;-webkit-mask-image:none;mask-image:none}
+  .hero-photo img{object-position:72% center}
+  .hero-photo::after{background:linear-gradient(90deg,rgba(17,30,60,.95) 0,rgba(17,30,60,.85) 50%,rgba(17,30,60,.5) 100%),linear-gradient(0deg,#111E3C 0,rgba(17,30,60,0) 22%)}
   .benefits-grid,.uc-cards{grid-template-columns:1fr 1fr}
   .sec-pillars,.plans-grid{grid-template-columns:1fr 1fr}
+  .sol-steps{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:0 calc(-1 * clamp(1.5rem,4vw,3rem));padding:0 clamp(1.5rem,4vw,3rem) .75rem;scroll-padding:0 clamp(1.5rem,4vw,3rem);gap:.75rem;scrollbar-width:thin;scrollbar-color:rgba(68,114,196,.35) transparent}
+  .sol-steps li{flex:0 0 34vw;scroll-snap-align:start}
 }
 @media(max-width:600px){
-  .sol-steps,.benefits-grid,.uc-cards,.sec-pillars,.plans-grid{grid-template-columns:1fr}
+  .benefits-grid,.uc-cards,.sec-pillars,.plans-grid,.prob-items{grid-template-columns:1fr}
   .hero-ctas,.cta-btns{flex-direction:column;align-items:stretch}
   .btn-primary,.btn-outline{width:100%;justify-content:center}
+  .hero-photo img{object-position:72% center}
+  .hero-photo::after{background:linear-gradient(180deg,rgba(17,30,60,.9) 0,rgba(17,30,60,.86) 55%,rgba(17,30,60,.96) 100%)}
+  .hero-sub{color:rgba(255,255,255,.75)}
+  .sol-steps li{flex-basis:64vw}
 }
 `;
 
@@ -267,6 +249,15 @@ export default function FinancialPage() {
           <div className="hero-grid"></div>
           <div className="hero-glow"></div>
         </div>
+        <div className="hero-photo">
+          <Image
+            src="/images/financial-hero.webp"
+            alt="Cliente frente a un banco mostrando en su teléfono credenciales verificadas de identidad, ingresos y situación financiera; el banco recibe una verificación exitosa en segundos."
+            fill
+            preload
+            sizes="100vw"
+          />
+        </div>
         <div className="hero-inner">
           <div>
             <div className="hero-tag">Solución para el Sector Financiero</div>
@@ -284,67 +275,14 @@ export default function FinancialPage() {
               <a href="#como-funciona" className="btn-outline">Ver cómo funciona</a>
             </div>
             <div className="hero-proof">
-              <div className="proof-item"><strong>&lt;2s</strong>verificación completa</div>
+              <div className="proof-item">verificación completa en 2 seg</div>
               <div className="proof-divider"></div>
-              <div className="proof-item"><strong>0</strong>documentos en papel</div>
+              <div className="proof-item">Sin PDF y sin papel</div>
               <div className="proof-divider"></div>
-              <div className="proof-item"><strong>100%</strong>sin intervención humana</div>
-            </div>
-          </div>
-          <div className="hero-right">
-            <div className="hero-card">
-              <div className="hero-card-top">
-                <div className="hero-card-label">Flujo de verificación bancaria</div>
-                <div className="flow-step">
-                  <div className="flow-icon fi-1">🏦</div>
-                  <div style={{ flex: 1 }}>
-                    <div className="flow-title">Cliente llega al portal del banco</div>
-                    <div className="flow-sub">Sin formularios previos, sin crear cuenta</div>
-                  </div>
-                  <div className="flow-check">✓</div>
-                </div>
-                <div className="flow-arrow">↓</div>
-                <div className="flow-step">
-                  <div className="flow-icon fi-2">📱</div>
-                  <div style={{ flex: 1 }}>
-                    <div className="flow-title">Escanea el QR con la app Veris</div>
-                    <div className="flow-sub">Como cuando escanea para pagar</div>
-                  </div>
-                  <div className="flow-check">✓</div>
-                </div>
-                <div className="flow-arrow">↓</div>
-                <div className="flow-step">
-                  <div className="flow-icon fi-3">🔒</div>
-                  <div style={{ flex: 1 }}>
-                    <div className="flow-title">Autoriza compartir solo lo necesario</div>
-                    <div className="flow-sub">Ingresos, empleo, identidad — campo por campo</div>
-                  </div>
-                  <div className="flow-check">✓</div>
-                </div>
-                <div className="flow-arrow">↓</div>
-                <div className="flow-step">
-                  <div className="flow-icon fi-4">✅</div>
-                  <div style={{ flex: 1 }}>
-                    <div className="flow-title">Banco recibe perfil verificado al instante</div>
-                    <div className="flow-sub">Respaldado por la institución emisora — imposible de falsificar</div>
-                  </div>
-                  <div className="flow-check">✓</div>
-                </div>
+              <div className="proof-item">Sin frincción para el cliente
               </div>
-              <div className="hero-card-stats">
-                <div className="stat-col">
-                  <div className="stat-val blue">&lt;2s</div>
-                  <div className="stat-lab">Verificación</div>
-                </div>
-                <div className="stat-col">
-                  <div className="stat-val">0</div>
-                  <div className="stat-lab">Documentos</div>
-                </div>
-                <div className="stat-col">
-                  <div className="stat-val">100%</div>
-                  <div className="stat-lab">Automático</div>
-                </div>
-              </div>
+              <div className="proof-divider"></div>
+              <div className="proof-item">Flujos 100% automáticos</div>
             </div>
           </div>
         </div>
@@ -381,48 +319,16 @@ export default function FinancialPage() {
               </p>
               <div className="prob-items">
                 <div className="prob-item reveal reveal-delay-1">
-                  <div className="pi-icon pi-r">🎭</div>
-                  <div>
-                    <div className="pi-title">Fraude de identidad y documentos adulterados</div>
-                    <div className="pi-desc">
-                      Liquidaciones falsificadas, contratos inventados, identidades suplantadas.
-                      Sin verificación en tiempo real, el riesgo de fraude recae completamente
-                      en el banco.
-                    </div>
-                  </div>
+                  <Image src="/images/financial-problema-fraude-v3.webp" alt="Fraude de identidad y documentos adulterados: liquidaciones falsas, contratos inventados e identidades suplantadas. Sin verificación online, hay mucho riesgo." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 270px" />
                 </div>
                 <div className="prob-item reveal reveal-delay-2">
-                  <div className="pi-icon pi-a">📂</div>
-                  <div>
-                    <div className="pi-title">Procesos de validación lentos y costosos</div>
-                    <div className="pi-desc">
-                      Pedir liquidaciones, llamar al empleador, revisar documentos manualmente.
-                      Un proceso que consume tiempo de ejecutivos y puede tomar días — mientras
-                      el cliente considera otras opciones.
-                    </div>
-                  </div>
+                  <Image src="/images/financial-problema-procesos-v3.webp" alt="Procesos de validación lentos y costosos: pedir documentos y revisarlos uno a uno de forma manual no es escalable." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 270px" />
                 </div>
                 <div className="prob-item reveal reveal-delay-3">
-                  <div className="pi-icon pi-b">🚪</div>
-                  <div>
-                    <div className="pi-title">Abandono de los mejores perfiles</div>
-                    <div className="pi-desc">
-                      Los clientes más solventes son los que menos toleran la fricción. Cada
-                      paso adicional que se les pide aumenta la probabilidad de que completen
-                      el proceso con la competencia.
-                    </div>
-                  </div>
+                  <Image src="/images/financial-problema-abandono-v3.webp" alt="Abandono de los mejores perfiles: cada paso adicional aumenta la fricción para los clientes más solventes." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 270px" />
                 </div>
                 <div className="prob-item reveal reveal-delay-4">
-                  <div className="pi-icon pi-p">🔑</div>
-                  <div>
-                    <div className="pi-title">Contraseñas comprometidas como vector de fraude</div>
-                    <div className="pi-desc">
-                      El 81% de los ataques digitales a empresas proviene de credenciales
-                      robadas o reutilizadas. La banca digital es el blanco más atractivo
-                      para este tipo de fraude.
-                    </div>
-                  </div>
+                  <Image src="/images/financial-problema-contrasenas-v2.webp" alt="Contraseñas comprometidas como vector de fraude: las credenciales robadas o reutilizadas ponen en riesgo la banca digital." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 270px" />
                 </div>
               </div>
             </div>
@@ -474,36 +380,18 @@ export default function FinancialPage() {
             <p className="s-sub" style={{ margin: "0 auto" }}>
               Sin formularios, sin documentos, sin esperas. El cliente presenta su información
               verificada directamente desde su teléfono — respaldada por la institución que
-              la emitió.
+              la emitió. 
             </p>
           </div>
-          <div className="sol-steps">
-            <div className="sol-step reveal reveal-delay-1">
-              <div className="step-num sn-1">1</div>
-              <h3>Cliente llega al portal</h3>
-              <p>Sin crear cuenta ni completar formularios previos. El proceso empieza con un código QR o un botón directo.</p>
-            </div>
-            <div className="sol-step reveal reveal-delay-2">
-              <div className="step-num sn-2">2</div>
-              <h3>Escanea con la app Veris</h3>
-              <p>Como cuando escanea para pagar. Simple, familiar, en segundos — sin instrucciones adicionales.</p>
-            </div>
-            <div className="sol-step reveal reveal-delay-3">
-              <div className="step-num sn-3">3</div>
-              <h3>Autoriza solo lo necesario</h3>
-              <p>El cliente decide exactamente qué comparte. El banco recibe solo la información que el proceso requiere.</p>
-            </div>
-            <div className="sol-step reveal reveal-delay-4">
-              <div className="step-num sn-4">4</div>
-              <h3>El banco recibe perfil verificado</h3>
-              <p>Identidad, ingresos, empleo — confirmados en tiempo real por la institución emisora. Imposible de falsificar.</p>
-            </div>
-            <div className="sol-step reveal" style={{ transitionDelay: ".5s" }}>
-              <div className="step-num sn-5">5</div>
-              <h3>El producto se entrega al instante</h3>
-              <p>Sin esperar revisión manual. El banco define el criterio, el sistema decide en tiempo real si el cliente califica.</p>
-            </div>
-          </div>
+          <figure className="sol-flow reveal">
+            <ol className="sol-steps" aria-label="Flujo en cinco pasos">
+              <li><Image src="/images/financial-paso-1.png" alt="Paso 1, Ingresa al portal: inicia sesión o abre una cuenta." width={462} height={1110} sizes="(max-width: 600px) 64vw, (max-width: 900px) 34vw, 232px" /></li>
+              <li><Image src="/images/financial-paso-2.webp" alt="Paso 2, Escanea el QR: usa tu Veris Wallet." width={462} height={1110} sizes="(max-width: 600px) 64vw, (max-width: 900px) 34vw, 232px" /></li>
+              <li><Image src="/images/financial-paso-3.webp" alt="Paso 3, Autoriza lo necesario: tú decides qué datos compartir." width={462} height={1110} sizes="(max-width: 600px) 64vw, (max-width: 900px) 34vw, 232px" /></li>
+              <li><Image src="/images/financial-paso-4.webp" alt="Paso 4, Perfil verificado: el emisor confirma identidad, ingresos y empleo." width={462} height={1110} sizes="(max-width: 600px) 64vw, (max-width: 900px) 34vw, 232px" /></li>
+              <li><Image src="/images/financial-paso-5.webp" alt="Paso 5, Entrega al instante: si calificas según el criterio del banco." width={462} height={1110} sizes="(max-width: 600px) 64vw, (max-width: 900px) 34vw, 232px" /></li>
+            </ol>
+          </figure>
         </div>
       </section>
 
@@ -522,40 +410,22 @@ export default function FinancialPage() {
           </div>
           <div className="uc-cards">
             <div className="uc-card reveal reveal-delay-1">
-              <div className="uc-icon">💳</div>
-              <h3>Solicitud de crédito sin papeles</h3>
-              <p>El cliente demuestra sus ingresos y empleo al instante. El sistema responde si califica según las condiciones que el banco define — sin que nadie revise nada manualmente.</p>
-              <span className="uc-tag">Crédito · Hipotecario</span>
+              <Image src="/images/financial-caso-credito.webp" alt="Solicitud de crédito sin papeles: ingresos y empleo verificados al instante; el sistema evalúa la solicitud con los criterios del banco. Crédito · Hipotecario." width={1920} height={1080} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </div>
             <div className="uc-card reveal reveal-delay-2">
-              <div className="uc-icon">🏦</div>
-              <h3>Apertura de cuenta 100% digital</h3>
-              <p>El banco recibe identidad verificada — nombre, RUT, domicilio — directamente desde la app, sin biometría externa ni lectura de documentos. Elimina el costo de los servicios de validación actuales.</p>
-              <span className="uc-tag">Onboarding · KYC</span>
+              <Image src="/images/financial-caso-apertura.webp" alt="Apertura de cuenta 100% digital en segundos: nombre, RUT y domicilio verificados desde la app, sin biometría externa ni lectura de documentos. Onboarding · KYC." width={1920} height={1080} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </div>
             <div className="uc-card reveal reveal-delay-3">
-              <div className="uc-icon">🔐</div>
-              <h3>Acceso seguro sin contraseña</h3>
-              <p>El cliente accede a la banca digital con su identidad verificada. Elimina el riesgo de accesos fraudulentos por credenciales robadas o compartidas.</p>
-              <span className="uc-tag">Autenticación · Seguridad</span>
+              <Image src="/images/financial-caso-acceso.webp" alt="Acceso seguro sin contraseña: ingresa a la banca digital con tu identidad verificada y reduce el riesgo asociado a contraseñas robadas o compartidas. Autenticación · Seguridad." width={1920} height={1080} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </div>
             <div className="uc-card reveal reveal-delay-1">
-              <div className="uc-icon">💎</div>
-              <h3>Acceso a productos según perfil real</h3>
-              <p>El banco puede ofrecer productos de inversión, líneas premium o beneficios especiales automáticamente a quienes cumplen condiciones verificadas — sin que el cliente tenga que solicitarlos.</p>
-              <span className="uc-tag">Segmentación · Productos</span>
+              <Image src="/images/financial-caso-productos.webp" alt="Acceso a productos según perfil real: el banco ofrece productos según condiciones verificadas, generando inteligencia de negocio en línea. Segmentación · Productos." width={1920} height={1080} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </div>
             <div className="uc-card reveal reveal-delay-2">
-              <div className="uc-icon">🔏</div>
-              <h3>Autorización de operaciones críticas</h3>
-              <p>Para transferencias de alto monto o cambios sensibles, el banco solicita aprobación explícita al cliente desde su app. Sin esa aprobación, la operación no procede — elimina el fraude por suplantación.</p>
-              <span className="uc-tag">Seguridad · Antifraude</span>
+              <Image src="/images/financial-caso-autorizacion.webp" alt="Autorización de operaciones críticas: aprueba transferencias de alto monto y cambios sensibles desde la app; sin tu aprobación, la operación no procede. Seguridad · Antifraude." width={1920} height={1080} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </div>
             <div className="uc-card reveal reveal-delay-3">
-              <div className="uc-icon">🚪</div>
-              <h3>Control de acceso físico a instalaciones</h3>
-              <p>Los colaboradores acceden a oficinas y áreas restringidas con su credencial digital. El banco elimina el costo de gestionar credenciales físicas y obtiene registro de accesos en tiempo real.</p>
-              <span className="uc-tag">Seguridad física · RR.HH.</span>
+              <Image src="/images/financial-caso-acceso-fisico.webp" alt="Control de acceso físico a instalaciones: ingresa a oficinas y áreas restringidas con tu credencial digital; el banco obtiene un registro de accesos en tiempo real. Seguridad física · RR.HH." width={1920} height={1080} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </div>
           </div>
         </div>

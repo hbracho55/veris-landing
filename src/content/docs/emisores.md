@@ -88,7 +88,7 @@ La segunda modalidad es la que corresponde a producción: **la institución mant
 
 #### Response `200 OK`
 
-Ver [sección 6](#6-estructura-de-la-credencial-emitida) para la estructura completa.
+Devuelve la credencial emitida.
 
 #### Errores
 
@@ -320,9 +320,7 @@ La wallet descarga la credencial al recibir la notificación push. Esto lo hace 
 **TTL:** 10 minutos desde la emisión.  
 **Consumo:** el primer acceso elimina la credencial del store — no puede descargarse dos veces.
 
-```json
-// Response: estructura completa de la Credential (ver sección 7)
-```
+**Response:** la credencial pendiente.
 
 **Errores:**
 - `404` — credencial no encontrada (expirada o ya descargada)
@@ -499,64 +497,7 @@ Response: { "challenge": "token-aleatorio-123", "verified": true }
 
 ---
 
-## 6. Estructura de la credencial emitida
-
-Todos los endpoints de emisión devuelven un objeto `Credential`:
-
-```json
-{
-  "id":                    "vc_abc123def456",
-  "credentialTypeCode":    "paystub-certificate",
-  "credentialTypeName":    "Liquidación de Sueldo",
-  "status":                "active",
-  "disclosureRequired":    true,
-  "requiresOnlineValidation": false,
-  "singleUse":             false,
-  "issuerDid":             "did:veris:institution-mi-empresa",
-  "institutionCode":       "mi-empresa",
-  "industryName":          "financial",
-  "issuanceDate":          "2026-07-03T10:00:00Z",
-  "expirationDate":        "2027-07-03T10:00:00Z",
-  "userDid":               "did:veris:user-<identificador>",
-  "userName":              "Carlos Martínez",
-  "verified":              true,
-  "disclosableFields":     ["rent", "employer", "userName", "userId"],
-  "signature": {
-    "jwt": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9...",
-    "disclosures": [
-      { "field": "rent",     "value": "1850000",       "salt": "a3K9mP2x..." },
-      { "field": "employer", "value": "Tecnología SpA", "salt": "b7W4nT9y..." },
-      { "field": "userName", "value": "Carlos M.",      "salt": "c5V8oS3z..." },
-      { "field": "userId",   "value": "12345678-9",     "salt": "d2U7pR6w..." }
-    ]
-  },
-  "metadata": {
-    "webhook": {
-      "receivedAt": "2026-07-03T10:00:00Z",
-      "requestId":  "nomina-2026-07-001",
-      "periodo":    "junio-2026"
-    }
-  }
-}
-```
-
-### Campos que conviene entender
-
-**`verified`** — lo informa tu propia institución en la respuesta a la consulta del adaptador: confirma que el dato proviene de tus registros. Si tu sistema responde `verified: false`, el adaptador **rechaza la emisión** en lugar de firmar un dato sin respaldo.
-
-**`proof`** — opcional. Es la prueba de origen que aporta tu institución si firma su propia respuesta. No es la firma de Veris: esa va siempre en `signature.jwt`, y es la que el verificador comprueba.
-
-**`disclosableFields`** — los campos que el titular podrá revelar por separado al presentar la credencial. Lo que no está aquí no se puede presentar.
-
-### Formato SD-JWT
-
-El campo `signature.jwt` es un JWT firmado con EdDSA que contiene los **hashes** de cada disclosure, no los valores en texto claro. Los valores reales están en `signature.disclosures` con su salt individual.
-
-Cuando el usuario presenta la credencial a un verificador, puede elegir revelar solo los disclosures que el verificador necesita — los demás quedan ocultos.
-
----
-
-## 7. Códigos de error
+## 6. Códigos de error
 
 Todos los errores siguen el formato estándar NestJS:
 

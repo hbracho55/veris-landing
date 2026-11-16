@@ -10,3 +10,9 @@
 @media(max-width:760px){.role.roleImage .roleCta{padding:0 24px 24px}}
 @media(max-width:1050px){.industries{grid-template-columns:1fr 1fr}.industry:last-child:nth-child(3n+1){grid-column:auto}.industry:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc(50% - 14px)}}
 @media(max-width:760px){.industries{grid-template-columns:1fr;gap:22px}.industry:last-child:nth-child(odd){width:100%}}
+
+.problem{padding-bottom:20px}
+.pains{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pain{background:#fff;border:1px solid #cdd5dd;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px #14274314,0 8px 22px #14274312}
+.pain img{display:block;width:100%;height:auto}
+@media(max-width:760px){.pains{grid-template-columns:1fr;gap:14px}}

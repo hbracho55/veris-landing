@@ -46,6 +46,17 @@ export default function Home() {
 
       <div className={s.standards}><span>Confianza construida sobre estándares abiertos</span><div><strong>W3C Verifiable Credentials</strong><span>✳</span><strong>SD-JWT</strong><span>✳</span><strong>Identidad descentralizada</strong></div></div>
 
+      <section className={`${s.section} ${s.problem}`} id="problema">
+        <div className={s.sectionIntro}>
+          <div><span className={s.tag}>EL PROBLEMA</span><h2>Cada día tomas decisiones críticas<br /><em>sobre documentos que cualquiera puede modificar.</em></h2></div>
+          <p>Ya sea que emitas o verifiques documentos, el modelo actual tiene el mismo problema: nadie puede saber con certeza si lo que recibe es real.</p>
+        </div>
+        <div className={s.pains}>
+          <div className={s.pain}><Image src="/images/problema-emites.webp" alt="Si emites: tu validador le traspasa el problema a quien verifica, porque cada documento se revisa a mano, sin automatización. Y tus documentos se falsifican sin que lo sepas: tu reputación sufre antes de que te enteres." width={1920} height={1200} sizes="(max-width: 760px) 100vw, 590px" /></div>
+          <div className={s.pain}><Image src="/images/problema-verificas.webp" alt="Si verificas: validar es manual, documento por documento, y no escala, porque revisar el portal de cada emisor toma tiempo. Y cuando detectas el fraude, ya es tarde: la competencia responde en horas y la decisión ya se tomó." width={1920} height={1200} sizes="(max-width: 760px) 100vw, 590px" /></div>
+        </div>
+      </section>
+
       <section className={s.section} id="como-funciona">
         <div className={s.sectionIntro}><div><span className={s.tag}>DEL DOCUMENTO A LA CERTEZA</span><h2>Menos papeles.<br /><em>Más posibilidades.</em></h2></div><p>Un PDF puede parecer auténtico. Una credencial permite comprobarlo. Veris conecta a quienes emiten información con quienes necesitan confiar en ella.</p></div>
         <figure className={s.flow}>

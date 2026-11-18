@@ -118,17 +118,9 @@ a{text-decoration:none}
 .benefits{background:#fff}
 .benefits-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:3rem}
 .benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
-.benefit-card{background:var(--ice);border:1px solid var(--border);border-radius:14px;padding:1.6rem;transition:all .22s;position:relative;overflow:hidden}
-.benefit-card:hover{border-color:var(--blue);background:#fff;box-shadow:0 8px 26px rgba(68,114,196,.09);transform:translateY(-2px)}
-.benefit-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transition:transform .25s;transform-origin:left}
-.benefit-card:hover::before{transform:scaleX(1)}
-.bc-b::before{background:var(--blue)}.bc-m::before{background:var(--magenta)}.bc-g::before{background:var(--green)}
-.benefit-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;font-size:1.1rem}
-.bi-b{background:var(--blue-pale)}.bi-m{background:var(--magenta-pale)}.bi-g{background:var(--green-pale)}
-.benefit-title{font-family:'DM Serif Display',serif;font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:.55rem}
-.benefit-desc{font-size:.79rem;color:var(--muted);line-height:1.62}
-.benefit-hl{margin-top:.85rem;padding-top:.75rem;border-top:1px solid var(--border);font-size:.72rem;font-weight:600}
-.bh-b{color:var(--blue)}.bh-m{color:var(--magenta)}.bh-g{color:var(--green)}
+.benefit-card{background:#fff;border:1px solid #cdd5dd;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(20,39,67,.08),0 8px 22px rgba(20,39,67,.07);transition:all .22s}
+.benefit-card img{display:block;width:100%;height:auto}
+.benefit-card:hover{border-color:var(--blue);box-shadow:0 8px 26px rgba(68,114,196,.12);transform:translateY(-2px)}
 
 /* USE CASES */
 .usecases{background:var(--ice)}
@@ -144,16 +136,9 @@ a{text-decoration:none}
 .sec-inner{position:relative;z-index:1}
 .sec-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
 .sec-pillars{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem}
-.pillar{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.25rem;transition:border-color .2s}
-.pillar:hover{border-color:rgba(255,255,255,.15)}
-.pillar-ico{font-size:1.2rem;margin-bottom:.75rem}
-.pillar-name{font-family:'DM Serif Display',serif;font-size:.88rem;font-weight:700;color:#fff;margin-bottom:.35rem}
-.pillar-desc{font-size:.75rem;color:rgba(255,255,255,.4);line-height:1.55}
-.pillar-badge{display:inline-block;margin-top:.6rem;font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;border-radius:100px}
-.pb-blue{background:rgba(68,114,196,.15);color:rgba(68,114,196,.9)}
-.pb-green{background:rgba(29,158,117,.15);color:rgba(29,158,117,.85)}
-.pb-magenta{background:rgba(192,56,138,.15);color:rgba(192,56,138,.9)}
-.pb-amber{background:rgba(180,140,40,.15);color:rgba(200,160,60,.9)}
+.pillar{border:1px solid rgba(255,255,255,.1);border-radius:12px;overflow:hidden;transition:border-color .2s,transform .2s}
+.pillar img{display:block;width:100%;height:auto}
+.pillar:hover{border-color:rgba(255,255,255,.25);transform:translateY(-2px)}
 .compliance-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:2rem;margin-bottom:1.5rem}
 .compliance-title{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1.25rem}
 .ci-items{display:flex;flex-direction:column;gap:.65rem}
@@ -448,65 +433,23 @@ export default function FinancialPage() {
             </p>
           </div>
           <div className="benefits-grid">
-            <div className="benefit-card bc-b reveal reveal-delay-1">
-              <div className="benefit-icon bi-b">🛡️</div>
-              <div className="benefit-title">Fraude eliminado desde el origen</div>
-              <div className="benefit-desc">
-                Las credenciales son emitidas y firmadas por la institución de origen.
-                Ningún documento puede alterarse sin invalidarse automáticamente.
-                El banco no necesita validar la autenticidad — ya está garantizada.
-              </div>
-              <div className="benefit-hl bh-b">Cero documentos falsificados posibles</div>
+            <div className="benefit-card reveal reveal-delay-1">
+              <Image src="/images/financial-beneficio-fraude.webp" alt="Fraude eliminado desde el origen: credenciales firmadas por la institución de origen; toda alteración invalida la credencial automáticamente. Cero documentos falsificados posibles." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </div>
-            <div className="benefit-card bc-m reveal reveal-delay-2">
-              <div className="benefit-icon bi-m">⚡</div>
-              <div className="benefit-title">Procesos que pasan de días a segundos</div>
-              <div className="benefit-desc">
-                Lo que hoy toma días de validación manual ocurre en menos de 2 segundos.
-                El banco puede emitir un crédito, abrir una cuenta o activar un producto
-                en el mismo momento en que el cliente demuestra que califica.
-              </div>
-              <div className="benefit-hl bh-m">Conversión inmediata, sin abandonos</div>
+            <div className="benefit-card reveal reveal-delay-2">
+              <Image src="/images/financial-beneficio-procesos.webp" alt="Procesos que pasan de días a segundos: validación en menos de 2 segundos para activar un crédito, una cuenta o un producto cuando el cliente califica. Conversión inmediata, sin abandonos." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </div>
-            <div className="benefit-card bc-g reveal reveal-delay-3">
-              <div className="benefit-icon bi-g">💸</div>
-              <div className="benefit-title">El banco también puede ser emisor</div>
-              <div className="benefit-desc">
-                El banco puede emitir sus propias credenciales — certificados de ingresos,
-                historial crediticio, credencial de cliente preferente. Cada vez que un
-                tercero las verifica, el banco recibe un royalty.
-              </div>
-              <div className="benefit-hl bh-g">Nueva fuente de ingresos recurrentes</div>
+            <div className="benefit-card reveal reveal-delay-3">
+              <Image src="/images/financial-beneficio-emisor.webp" alt="El banco también puede ser emisor: emite certificados de ingresos, historial crediticio y credenciales de cliente, y recibe un royalty cada vez que un tercero las verifica. Nueva fuente de ingresos recurrentes." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </div>
-            <div className="benefit-card bc-b reveal reveal-delay-1">
-              <div className="benefit-icon bi-b">😊</div>
-              <div className="benefit-title">Experiencia del cliente sin fricción</div>
-              <div className="benefit-desc">
-                Un escaneo de QR reemplaza formularios, documentos adjuntos y llamadas
-                de confirmación. Los mejores perfiles — los que más le interesan al banco —
-                son los primeros en apreciar esa diferencia.
-              </div>
-              <div className="benefit-hl bh-b">Mayor tasa de conversión y retención</div>
+            <div className="benefit-card reveal reveal-delay-1">
+              <Image src="/images/financial-beneficio-experiencia.webp" alt="Experiencia del cliente sin fricción: un escaneo de QR reemplaza formularios, adjuntos y llamadas. Mayor tasa de conversión y retención." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </div>
-            <div className="benefit-card bc-m reveal reveal-delay-2">
-              <div className="benefit-icon bi-m">📊</div>
-              <div className="benefit-title">Trazabilidad completa para reguladores</div>
-              <div className="benefit-desc">
-                Cada verificación queda registrada con fecha, hora y qué información
-                se consultó. El banco tiene evidencia completa para auditorías KYC,
-                AML y cumplimiento normativo — sin trabajo adicional.
-              </div>
-              <div className="benefit-hl bh-m">Compliance automatizado</div>
+            <div className="benefit-card reveal reveal-delay-2">
+              <Image src="/images/financial-beneficio-trazabilidad.webp" alt="Trazabilidad completa para reguladores: registra fecha, hora e información consultada en cada verificación, como evidencia para auditorías KYC, AML y cumplimiento normativo. Compliance automatizado." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </div>
-            <div className="benefit-card bc-g reveal reveal-delay-3">
-              <div className="benefit-icon bi-g">🏆</div>
-              <div className="benefit-title">Diferenciación real en el mercado</div>
-              <div className="benefit-desc">
-                El primer banco en Chile en ofrecer verificación instantánea y sin papeles
-                tiene una ventaja competitiva concreta — no una mejora incremental.
-                Los clientes lo notan y lo recomiendan.
-              </div>
-              <div className="benefit-hl bh-g">Ventaja de primer movimiento</div>
+            <div className="benefit-card reveal reveal-delay-3">
+              <Image src="/images/financial-beneficio-diferenciacion.webp" alt="Diferenciación real en el mercado: verificación instantánea y sin papeles, una ventaja competitiva que los clientes notan y recomiendan. Ventaja de primer movimiento." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </div>
           </div>
         </div>
@@ -527,42 +470,10 @@ export default function FinancialPage() {
                 desde la app del cliente al banco — Veris solo verifica la autenticidad.
               </p>
               <div className="sec-pillars">
-                <div className="pillar">
-                  <div className="pillar-ico">📌</div>
-                  <div className="pillar-name">Solo lo necesario</div>
-                  <div className="pillar-desc">
-                    Si el banco necesita saber si la renta supera un umbral, recibe eso —
-                    no el monto exacto. Sin datos sensibles innecesarios.
-                  </div>
-                  <span className="pillar-badge pb-blue">Minimización</span>
-                </div>
-                <div className="pillar">
-                  <div className="pillar-ico">🔒</div>
-                  <div className="pillar-name">Imposible de falsificar</div>
-                  <div className="pillar-desc">
-                    Cada credencial está firmada por la institución emisora.
-                    Cualquier alteración la invalida automáticamente.
-                  </div>
-                  <span className="pillar-badge pb-green">Integridad</span>
-                </div>
-                <div className="pillar">
-                  <div className="pillar-ico">📋</div>
-                  <div className="pillar-name">Auditoría completa</div>
-                  <div className="pillar-desc">
-                    Registro de cada verificación con fecha, hora y qué
-                    información se consultó. Listo para reguladores.
-                  </div>
-                  <span className="pillar-badge pb-amber">Trazabilidad</span>
-                </div>
-                <div className="pillar">
-                  <div className="pillar-ico">👤</div>
-                  <div className="pillar-name">Control del cliente</div>
-                  <div className="pillar-desc">
-                    El cliente aprueba cada solicitud y ve en su app quién
-                    accedió a su información y cuándo.
-                  </div>
-                  <span className="pillar-badge pb-magenta">Transparencia</span>
-                </div>
+                <div className="pillar"><Image src="/images/financial-seguridad-minimizacion-v2.webp" alt="Solo lo necesario: si el banco necesita saber si la renta supera un umbral, recibe eso, no el monto exacto. Minimización." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 270px" /></div>
+                <div className="pillar"><Image src="/images/financial-seguridad-integridad-v2.webp" alt="Imposible de falsificar: cada credencial está firmada por la institución emisora y cualquier alteración la invalida automáticamente. Integridad." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 270px" /></div>
+                <div className="pillar"><Image src="/images/financial-seguridad-trazabilidad-v2.webp" alt="Auditoría completa: registro de cada verificación con fecha, hora e información consultada. Trazabilidad." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 270px" /></div>
+                <div className="pillar"><Image src="/images/financial-seguridad-transparencia-v2.webp" alt="Control del cliente: el cliente aprueba cada solicitud y ve en su app quién accedió a su información y cuándo. Transparencia." width={1920} height={1200} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 270px" /></div>
               </div>
             </div>
             <div className="reveal" style={{ transitionDelay: ".2s" }}>

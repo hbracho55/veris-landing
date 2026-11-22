@@ -61,10 +61,6 @@ export default function DocsIndex() {
             <li>Políticas de verificación y control de acceso por atributos</li>
             <li>Estado, sincronización y revocación de credenciales</li>
           </ul>
-          <p>
-            Si necesitas alguna de estas antes de que esté publicada, escríbenos a{" "}
-            <a href="mailto:verisprotocol@gmail.com">verisprotocol@gmail.com</a> y te la enviamos.
-          </p>
         </div>
       </div>
     </>

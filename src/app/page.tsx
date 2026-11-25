@@ -53,7 +53,7 @@ export default function Home() {
         </div>
         <div className={s.pains}>
           <div className={s.pain}><Image src="/images/problema-emites.webp" alt="Si emites: tu validador le traspasa el problema a quien verifica, porque cada documento se revisa a mano, sin automatización. Y tus documentos se falsifican sin que lo sepas: tu reputación sufre antes de que te enteres." width={1920} height={1200} sizes="(max-width: 760px) 100vw, 590px" /></div>
-          <div className={s.pain}><Image src="/images/problema-verificas.webp" alt="Si verificas: validar es manual, documento por documento, y no escala, porque revisar el portal de cada emisor toma tiempo. Y cuando detectas el fraude, ya es tarde: la competencia responde en horas y la decisión ya se tomó." width={1920} height={1200} sizes="(max-width: 760px) 100vw, 590px" /></div>
+          <div className={s.pain}><Image src="/images/problema-verificas.webp" alt="Si verificas: validar es manual, documento por documento, y no escala, porque revisar el portal de cada emisor toma tiempo. Y cuando detectas el fraude, ya es tarde: la presión por responder rápido hace que decidas antes de terminar de verificar." width={1920} height={1200} sizes="(max-width: 760px) 100vw, 590px" /></div>
         </div>
       </section>
 
